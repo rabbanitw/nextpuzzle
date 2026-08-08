@@ -4,263 +4,243 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Next Puzzle — AI × Cybersecurity Advisory</title>
-  <meta name="description" content="Next Puzzle advises leaders at the intersection of artificial intelligence and cybersecurity — securing AI systems and deploying AI to defend the enterprise." />
-  <meta name="theme-color" content="#05060a" />
+  <meta name="description" content="Next Puzzle is an advisory working the seam between artificial intelligence and cybersecurity — hardening the AI you ship, and turning AI into how you defend." />
+  <meta name="theme-color" content="#f4f3ee" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Next Puzzle — AI × Cybersecurity Advisory" />
-  <meta property="og:description" content="Advisory at the intersection of AI and cybersecurity. We help you secure AI, and use AI to defend." />
+  <meta property="og:description" content="The advisory for the piece where AI meets the adversary." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nextpuzzleai.com" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Grenze+Gotisch:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- ambient background -->
-  <div class="bg" aria-hidden="true">
-    <div class="bg-grid"></div>
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
-    <div class="glow glow-3"></div>
-    <div class="noise"></div>
+  <!-- top status bar -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>PROMPT-INJECTION RED-TEAMING</span><i>✦</i>
+      <span>AGENT &amp; TOOL-USE GUARDRAILS</span><i>✦</i>
+      <span>MODEL SUPPLY-CHAIN REVIEW</span><i>✦</i>
+      <span>AI GOVERNANCE — NIST / EU AI ACT</span><i>✦</i>
+      <span>ML-DRIVEN DETECTION</span><i>✦</i>
+      <span>AUTONOMOUS SOC COPILOTS</span><i>✦</i>
+      <span>AI INCIDENT RUNBOOKS</span><i>✦</i>
+      <span>PROMPT-INJECTION RED-TEAMING</span><i>✦</i>
+      <span>AGENT &amp; TOOL-USE GUARDRAILS</span><i>✦</i>
+      <span>MODEL SUPPLY-CHAIN REVIEW</span><i>✦</i>
+      <span>AI GOVERNANCE — NIST / EU AI ACT</span><i>✦</i>
+      <span>ML-DRIVEN DETECTION</span><i>✦</i>
+      <span>AUTONOMOUS SOC COPILOTS</span><i>✦</i>
+      <span>AI INCIDENT RUNBOOKS</span><i>✦</i>
+    </div>
   </div>
 
-  <div class="cursor-glow" aria-hidden="true"></div>
-
-  <!-- NAV -->
+  <!-- nav -->
   <header class="nav" id="nav">
     <a href="#top" class="brand" aria-label="Next Puzzle home">
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M4 4h10v5a3 3 0 0 0 6 0V4h8v8h-5a3 3 0 0 0 0 6h5v10H18v-5a3 3 0 0 0-6 0v5H4z"
-              fill="none" stroke="url(#bg)" stroke-width="2" stroke-linejoin="round"/>
-        <defs>
-          <linearGradient id="bg" x1="0" y1="0" x2="32" y2="32">
-            <stop offset="0" stop-color="#5eead4"/>
-            <stop offset="1" stop-color="#8b7bff"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span>Next&nbsp;Puzzle</span>
+      <span class="brand-glyph" aria-hidden="true">◱</span>
+      <span class="brand-name">Next&nbsp;Puzzle</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#services">Services</a>
-      <a href="#approach">Approach</a>
-      <a href="#why">Why us</a>
-      <a href="#about">About</a>
+      <a href="#services"><em>01</em> Services</a>
+      <a href="#approach"><em>02</em> Approach</a>
+      <a href="#why"><em>03</em> Thesis</a>
+      <a href="#contact"><em>04</em> Contact</a>
     </nav>
-    <a href="#contact" class="btn btn-nav">Start a conversation</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
+    <a href="#contact" class="nav-cta">Start&nbsp;a&nbsp;conversation&nbsp;→</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
   </header>
 
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-inner reveal">
-        <span class="eyebrow"><span class="dot"></span> AI × Cybersecurity Advisory</span>
-        <h1 class="hero-title">
-          Solve the hardest piece:<br />
-          <span class="grad">AI you can trust,<br />defenses that think.</span>
-        </h1>
-        <p class="hero-sub">
-          Next Puzzle advises leaders where artificial intelligence meets security — hardening the AI
-          you build against real-world threats, and putting AI to work defending everything else.
-        </p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary">Book a strategy call <span class="arrow">→</span></a>
-          <a href="#services" class="btn btn-ghost">Explore services</a>
-        </div>
-        <div class="hero-trust">
-          <span>Trusted by teams shipping AI in high-stakes environments</span>
-          <div class="trust-logos">
-            <span>FINTECH</span><span>DEFENSE</span><span>HEALTHCARE</span><span>SaaS</span>
-          </div>
-        </div>
+      <span class="frame-mark tl" aria-hidden="true"></span>
+      <span class="frame-mark tr" aria-hidden="true"></span>
+      <span class="frame-mark bl" aria-hidden="true"></span>
+      <span class="frame-mark br" aria-hidden="true"></span>
+
+      <p class="eyebrow reveal">// ADVISORY — ARTIFICIAL INTELLIGENCE × CYBERSECURITY</p>
+      <h1 class="hero-title reveal">
+        AI changed the board.
+        <span class="ital">We solve the new&nbsp;piece.</span>
+      </h1>
+      <p class="hero-deck reveal">
+        Next Puzzle works the seam between artificial intelligence and cybersecurity —
+        hardening the AI you ship against real adversaries, and turning AI into how you defend
+        everything&nbsp;else.
+      </p>
+
+      <div class="readout reveal" aria-hidden="true">
+        <p><span class="rk">surface</span> mapping AI + infrastructure attack surface <b class="ok">mapped</b></p>
+        <p><span class="rk">redteam</span> probing models · prompts · agents · data <b class="ok">4 findings</b></p>
+        <p><span class="rk">controls</span> shipping fixes ranked by exploitability <span class="cursor" id="typed"></span></p>
+      </div>
+
+      <div class="hero-cta reveal">
+        <a href="#contact" class="btn btn-primary">Book a strategy call →</a>
+        <a href="#services" class="btn btn-ghost">See the work ↓</a>
       </div>
     </section>
 
     <!-- STATS -->
     <section class="stats reveal">
-      <div class="stat"><b data-count="0">0</b><span>known adversary of your AI ignored</span></div>
-      <div class="stat"><b data-count="30">30</b><span>day threat-model to roadmap</span></div>
-      <div class="stat"><b data-count="15">15</b><span>years securing frontier systems</span></div>
-      <div class="stat"><b data-count="24">24</b><span>hour response, red-team on call</span></div>
+      <div class="stat"><b>00</b><p>known adversaries of your AI we let slide</p></div>
+      <div class="stat"><b>30<i>d</i></b><p>from first threat-model to an actionable roadmap</p></div>
+      <div class="stat"><b>15<i>y</i></b><p>securing frontier and high-stakes systems</p></div>
+      <div class="stat"><b>24<i>h</i></b><p>response window, red-team on call</p></div>
     </section>
 
-    <!-- SERVICES / BENTO -->
+    <!-- SERVICES -->
     <section class="section" id="services">
       <div class="section-head reveal">
-        <span class="kicker">What we do</span>
-        <h2>Two disciplines, one board.</h2>
-        <p>Security and AI are usually solved in separate rooms. We work the seam between them — the
-          place where most risk, and most advantage, actually lives.</p>
+        <p class="kicker">§ Services</p>
+        <h2>Two disciplines,<br /><span class="ital">one table.</span></h2>
+        <p class="lede">Security and AI are usually solved in separate rooms. We work the seam between
+          them — the place where most of your risk, and most of your advantage, actually lives.</p>
       </div>
 
-      <div class="bento reveal">
-        <article class="card card-lg">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      <div class="catalog reveal">
+        <article class="entry entry-feature">
+          <span class="entry-ref">S—01</span>
+          <div class="entry-body">
+            <h3>Securing AI</h3>
+            <p>Your models are a new attack surface. We threat-model the full pipeline — data, weights,
+              prompts, agents, and tools — then close the gaps before an adversary maps them for you.</p>
+            <ul class="specs">
+              <li>Model &amp; prompt-injection red-teaming</li>
+              <li>Agent &amp; tool-use guardrails</li>
+              <li>Data-poisoning &amp; supply-chain review</li>
+              <li>AI governance — NIST AI RMF / EU AI Act</li>
+            </ul>
           </div>
-          <h3>Securing AI</h3>
-          <p>Your models are a new attack surface. We threat-model the full pipeline — data, weights,
-            prompts, agents, and tools — then close the gaps before an adversary finds them.</p>
-          <ul class="tags">
-            <li>Model &amp; prompt-injection red-teaming</li>
-            <li>Agent &amp; tool-use guardrails</li>
-            <li>Data poisoning &amp; supply-chain review</li>
-            <li>AI governance &amp; NIST / EU-AI-Act readiness</li>
-          </ul>
         </article>
 
-        <article class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="currentColor" stroke-width="1.5"/></svg>
+        <article class="entry">
+          <span class="entry-ref">S—02</span>
+          <div class="entry-body">
+            <h3>AI for Defense</h3>
+            <p>Turn AI into your fastest analyst — detection, triage, and response that scale with the
+              threat instead of your headcount.</p>
+            <ul class="specs">
+              <li>ML-driven detection &amp; triage</li>
+              <li>Autonomous SOC copilots</li>
+            </ul>
           </div>
-          <h3>AI for Defense</h3>
-          <p>Turn AI into your fastest analyst — triage, detection, and response that scales with the
-            threat instead of your headcount.</p>
-          <ul class="tags">
-            <li>ML-driven detection &amp; triage</li>
-            <li>Autonomous SOC copilots</li>
-          </ul>
         </article>
 
-        <article class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.5"/></svg>
+        <article class="entry">
+          <span class="entry-ref">S—03</span>
+          <div class="entry-body">
+            <h3>Strategy &amp; Diligence</h3>
+            <p>Board-ready assessments for teams building, buying, or investing in AI — posture, risk,
+              and a roadmap you can act on Monday.</p>
+            <ul class="specs">
+              <li>Technical due diligence</li>
+              <li>Fractional AI-security leadership</li>
+            </ul>
           </div>
-          <h3>Strategy &amp; Diligence</h3>
-          <p>Board-ready assessments for teams building, buying, or investing in AI — risk, posture,
-            and a roadmap you can act on.</p>
-          <ul class="tags">
-            <li>Technical due diligence</li>
-            <li>Fractional AI-security leadership</li>
-          </ul>
         </article>
 
-        <article class="card card-wide">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <article class="entry entry-wide">
+          <span class="entry-ref">S—04</span>
+          <div class="entry-body">
+            <h3>Incident readiness for the AI era</h3>
+            <p>When a model leaks, an agent goes rogue, or a prompt-injection lands, you need a plan
+              written before the alert fires. We build the runbooks, run the tabletop, and stand beside
+              you when it counts.</p>
+            <ul class="specs specs-row">
+              <li>AI incident runbooks</li>
+              <li>Tabletop exercises</li>
+              <li>Post-incident forensics</li>
+            </ul>
           </div>
-          <h3>Incident readiness for the AI era</h3>
-          <p>When a model leaks, an agent goes rogue, or a prompt-injection lands — you need a plan
-            written before the alert fires. We build the runbooks, run the tabletop, and stand beside
-            you when it counts.</p>
-          <ul class="tags">
-            <li>AI incident runbooks</li>
-            <li>Tabletop exercises</li>
-            <li>Post-incident forensics</li>
-          </ul>
         </article>
       </div>
     </section>
 
     <!-- APPROACH -->
-    <section class="section" id="approach">
+    <section class="section approach" id="approach">
       <div class="section-head reveal">
-        <span class="kicker">How we work</span>
-        <h2>Every engagement is a puzzle.<br />We start with the corners.</h2>
-        <p>No boilerplate audits. We map your specific edges first, then work inward until the picture
-          is complete and defensible.</p>
+        <p class="kicker">§ Approach</p>
+        <h2>Every engagement is a puzzle.<br /><span class="ital">We start with the corners.</span></h2>
+        <p class="lede">No boilerplate audit. We map your specific edges first, then work inward until
+          the picture is complete — and defensible.</p>
       </div>
 
-      <div class="steps">
-        <div class="step reveal">
-          <span class="step-num">01</span>
+      <ol class="steps">
+        <li class="step reveal"><span class="step-num">01</span>
           <h3>Frame</h3>
           <p>We learn your systems, your adversaries, and your appetite for risk — the corner pieces
-            that make everything else fit.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-num">02</span>
+            that make everything else fit.</p></li>
+        <li class="step reveal"><span class="step-num">02</span>
           <h3>Probe</h3>
           <p>Hands-on red-teaming and threat modeling across your AI and infrastructure. We find what
-            breaks before someone else does.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-num">03</span>
+            breaks before someone else does.</p></li>
+        <li class="step reveal"><span class="step-num">03</span>
           <h3>Solve</h3>
-          <p>A prioritized roadmap with concrete fixes, guardrails, and controls — sequenced by real
-            risk, not theater.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-num">04</span>
+          <p>A prioritized roadmap of concrete fixes, guardrails, and controls — sequenced by real
+            risk, never security theater.</p></li>
+        <li class="step reveal"><span class="step-num">04</span>
           <h3>Sustain</h3>
           <p>We stay on call — monitoring, retesting, and adapting as your models and the threat
-            landscape evolve.</p>
+            landscape keep moving.</p></li>
+      </ol>
+    </section>
+
+    <!-- THESIS / WHY -->
+    <section class="section thesis" id="why">
+      <div class="thesis-grid">
+        <div class="thesis-copy reveal">
+          <p class="kicker">§ Thesis</p>
+          <h2>Rare people who speak <span class="ital">both languages.</span></h2>
+          <p class="lede">Most firms hand you an AI team or a security team. The dangerous problems live
+            in between — and they need people fluent in both. That's the only place we work.</p>
+          <dl class="tenets">
+            <div><dt>Practitioners, not slideware.</dt><dd>Everything we recommend, we've shipped or broken ourselves.</dd></div>
+            <div><dt>Offense informs defense.</dt><dd>We build controls the way an attacker would test them.</dd></div>
+            <div><dt>Signal over ceremony.</dt><dd>Findings ranked by exploitability and impact — no 200-page PDFs.</dd></div>
+          </dl>
         </div>
+
+        <figure class="pullquote reveal">
+          <blockquote>
+            <span class="dropcap" aria-hidden="true">T</span>he next decade of security won't be won by
+            AI or by defenders alone. It'll be won by the teams who master the piece where the two&nbsp;meet.
+          </blockquote>
+          <figcaption>— the founding thesis of Next&nbsp;Puzzle</figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- WHY -->
-    <section class="section why" id="why">
-      <div class="why-grid">
-        <div class="why-copy reveal">
-          <span class="kicker">Why Next Puzzle</span>
-          <h2>Rare people who speak <span class="grad">both languages.</span></h2>
-          <p>Most firms hand you an AI team or a security team. The dangerous problems live in between —
-            and they need people fluent in both. That's the only place we work.</p>
-          <div class="why-points">
-            <div class="why-point"><strong>Practitioners, not slideware.</strong> Everything we recommend, we've shipped or broken ourselves.</div>
-            <div class="why-point"><strong>Offense informs defense.</strong> We build controls the way an attacker would test them.</div>
-            <div class="why-point"><strong>Signal over ceremony.</strong> Findings ranked by exploitability and impact — no 200-page PDFs.</div>
-          </div>
-        </div>
-        <div class="why-visual reveal" aria-hidden="true">
-          <div class="orb">
-            <div class="ring ring-1"></div>
-            <div class="ring ring-2"></div>
-            <div class="ring ring-3"></div>
-            <div class="core"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT / QUOTE -->
-    <section class="section about" id="about">
-      <blockquote class="reveal">
-        <p>“The next decade of security won't be won by AI or by defenders alone — it'll be won by the
-          teams who master the puzzle where the two meet.”</p>
-        <footer><span class="q-mark">◆</span> The founding thesis of Next&nbsp;Puzzle</footer>
-      </blockquote>
-    </section>
-
-    <!-- CONTACT / CTA -->
+    <!-- CONTACT -->
     <section class="section contact" id="contact">
       <div class="cta reveal">
-        <span class="kicker">Let's talk</span>
-        <h2>Bring us your hardest piece.</h2>
-        <p>Whether you're shipping an AI product into a hostile world or defending one, a 30-minute call
-          will tell you where you stand — and what to do next.</p>
-        <div class="cta-actions">
-          <a href="mailto:hello@nextpuzzleai.com" class="btn btn-primary btn-lg">hello@nextpuzzleai.com <span class="arrow">→</span></a>
-          <a href="#top" class="btn btn-ghost btn-lg">Back to top</a>
-        </div>
+        <span class="frame-mark tl" aria-hidden="true"></span>
+        <span class="frame-mark tr" aria-hidden="true"></span>
+        <span class="frame-mark bl" aria-hidden="true"></span>
+        <span class="frame-mark br" aria-hidden="true"></span>
+        <p class="kicker">§ Contact</p>
+        <h2>Bring us your <span class="ital">hardest piece.</span></h2>
+        <p class="lede">Shipping an AI product into a hostile world, or defending one? A 30-minute call
+          tells you where you stand — and what to do next.</p>
+        <a href="mailto:hello@nextpuzzleai.com" class="mailline">hello@nextpuzzleai.com →</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M4 4h10v5a3 3 0 0 0 6 0V4h8v8h-5a3 3 0 0 0 0 6h5v10H18v-5a3 3 0 0 0-6 0v5H4z"
-                fill="none" stroke="url(#bg2)" stroke-width="2" stroke-linejoin="round"/>
-          <defs><linearGradient id="bg2" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#8b7bff"/></linearGradient></defs>
-        </svg>
-        <span>Next Puzzle</span>
-      </div>
-      <p class="footer-tag">Advisory at the intersection of AI &amp; cybersecurity.</p>
-      <div class="footer-meta">
-        <a href="mailto:hello@nextpuzzleai.com">hello@nextpuzzleai.com</a>
-        <span>© <span id="year">2026</span> Next Puzzle. All rights reserved.</span>
-      </div>
+    <div class="footer-top">
+      <span class="brand-glyph" aria-hidden="true">◱</span>
+      <span class="footer-name">Next Puzzle</span>
+    </div>
+    <p class="footer-tag">Advisory at the intersection of AI &amp; cybersecurity.</p>
+    <div class="footer-meta">
+      <a href="mailto:hello@nextpuzzleai.com">hello@nextpuzzleai.com</a>
+      <span>© <span id="year">2026</span> NEXT PUZZLE — ALL RIGHTS RESERVED</span>
     </div>
   </footer>
 
