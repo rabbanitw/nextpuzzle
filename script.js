@@ -92,6 +92,14 @@
         return;
       }
 
+      /* design-only preview (e.g. GitHub Pages A/B copy) — the live handler is prod-only */
+      var PROD = location.hostname === 'nextpuzzleai.com' || location.hostname === 'www.nextpuzzleai.com';
+      if (!PROD) {
+        form.innerHTML = '<p class="form-thanks">Design preview — the live form is at ' +
+          '<a href="https://nextpuzzleai.com/#contact" style="color:inherit;border-bottom:1px solid currentColor">nextpuzzleai.com</a>.</p>';
+        return;
+      }
+
       var original = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
