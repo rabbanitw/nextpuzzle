@@ -1,22 +1,25 @@
 /* ============================================================
    Next Puzzle — AI × Cybersecurity Advisory
-   Editorial serif + monospace, cool-paper light, burnt-rust accent.
+   Editorial serif + monospace, cool bone, deep pine-green accent.
    ============================================================ */
 
 :root {
   /* paper / ink */
-  --paper:     #f4f3ee;   /* cool-warm newsprint, not cream */
-  --paper-2:   #eeece5;   /* raised panel */
-  --ink:       #17181c;   /* near-black */
-  --ink-2:     #34363d;   /* body text */
-  --muted:     #6a6d76;   /* captions */
-  --line:      rgba(23,24,28,0.14);
-  --line-2:    rgba(23,24,28,0.30);
+  --paper:     #122c1f;   /* deep forest-green background */
+  --paper-2:   #1a3a2a;   /* raised panel */
+  --ink:       #edf0e8;   /* bone text */
+  --ink-2:     #b8c5bc;   /* muted bone */
+  --muted:     #7e8f84;   /* dim green-grey */
+  --line:      rgba(237,240,232,0.14);
+  --line-2:    rgba(237,240,232,0.26);
 
-  /* accent — burnt rust */
-  --rust:      #c2410c;
-  --ember:     #ff8a3d;
-  --rust-deep: #7c2d0a;
+  /* accent — bright emerald on the dark green (var names kept) */
+  --rust:      #54b98a;
+  --ember:     #74d3a4;
+  --rust-deep: #2f7d5b;
+
+  /* brass/gold counterpoint — gilds the display italics */
+  --gold:      #cba86a;
 
   /* type */
   --serif: 'Instrument Serif', 'Times New Roman', serif;
@@ -40,8 +43,8 @@ body {
   overflow-x: hidden;
   /* faint printed-paper tint */
   background-image:
-    radial-gradient(120% 80% at 100% 0%, rgba(194,65,12,0.05), transparent 55%),
-    radial-gradient(90% 70% at 0% 100%, rgba(23,24,28,0.035), transparent 60%);
+    radial-gradient(120% 80% at 100% 0%, rgba(84,185,138,0.10), transparent 55%),
+    radial-gradient(90% 70% at 0% 100%, rgba(0,0,0,0.22), transparent 60%);
   background-attachment: fixed;
 }
 a { color: inherit; text-decoration: none; }
@@ -72,7 +75,7 @@ em { font-style: italic; }
 
 /* ---------- nav ---------- */
 .nav {
-  position: fixed; top: 29px; left: 0; right: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; gap: 24px;
   padding: 0 clamp(18px, 4vw, 40px); height: 62px;
   background: color-mix(in srgb, var(--paper) 88%, transparent);
@@ -126,7 +129,8 @@ em { font-style: italic; }
 }
 .eyebrow { font-size: 12px; letter-spacing: 0.16em; color: var(--muted); margin-bottom: 30px; }
 .hero-title { font-size: clamp(3rem, 9.2vw, 7rem); max-width: 15ch; letter-spacing: -0.02em; }
-.hero-title .ital { color: var(--rust); display: inline; }
+.hero-title .ital { color: var(--gold); display: inline; }
+.section-head h2 .ital, .thesis-copy h2 .ital, .cta h2 .ital { color: var(--gold); }
 .hero-deck { font-size: clamp(1.1rem, 1.9vw, 1.4rem); color: var(--ink-2); max-width: 58ch; margin-top: 30px; }
 
 /* system readout */
@@ -163,14 +167,12 @@ em { font-style: italic; }
 .stat p { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--muted); margin-top: 14px; max-width: 24ch; letter-spacing: 0.01em; }
 
 /* ---------- services catalog ---------- */
-.catalog { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--line); }
+.catalog { border-top: 1px solid var(--line); }
 .entry {
-  display: grid; grid-template-columns: 70px 1fr; gap: 8px;
-  padding: 38px 34px 38px 8px; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line);
-  transition: background .25s;
+  display: grid; grid-template-columns: 110px 1fr; gap: clamp(18px, 4vw, 44px);
+  padding: clamp(30px, 4vw, 48px) 0; border-bottom: 1px solid var(--line);
 }
-.entry:hover { background: var(--paper-2); }
-.entry:nth-child(2n) { border-right: 0; }
+.entry-ref { padding-top: 6px; }
 .entry-feature { grid-row: span 2; }
 .entry-wide { grid-column: 1 / -1; grid-template-columns: 70px 1fr; border-right: 0; }
 .entry-ref { font-size: 12px; color: var(--rust); letter-spacing: 0.06em; padding-top: 8px; }
@@ -191,7 +193,7 @@ em { font-style: italic; }
 .step p { color: var(--ink-2); font-size: 0.98rem; }
 
 /* ---------- thesis ---------- */
-.thesis-grid { display: grid; grid-template-columns: 1fr 0.92fr; gap: clamp(36px, 6vw, 84px); align-items: start; }
+.thesis-copy { max-width: 720px; }
 .thesis-copy h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); }
 .tenets { margin-top: 34px; display: flex; flex-direction: column; }
 .tenets > div { padding: 20px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr; gap: 4px; }
@@ -211,7 +213,36 @@ em { font-style: italic; }
 
 /* ---------- contact ---------- */
 .contact { text-align: left; }
-.cta { position: relative; border: 1px solid var(--ink); border-radius: var(--r); padding: clamp(46px, 7vw, 88px) clamp(24px, 5vw, 64px); }
+.cta {
+  /* white form card keeps the light palette on the dark page */
+  --paper: #ffffff; --paper-2: #eef0ea;
+  --ink: #16201a; --ink-2: #333c36; --muted: #69726b;
+  --line: rgba(22,32,26,0.14); --line-2: rgba(22,32,26,0.30);
+  --rust: #1c5a40; --ember: #2c8160; --gold: #8a6a2f;
+  position: relative; background: #fff; color: var(--ink);
+  border: 1px solid var(--line-2); border-radius: var(--r);
+  padding: clamp(46px, 7vw, 88px) clamp(24px, 5vw, 64px);
+}
+
+/* ---------- inquiry form ---------- */
+.inquiry { margin-top: 38px; display: flex; flex-direction: column; gap: 20px; max-width: 660px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field .req { color: var(--rust); }
+.field label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.inquiry input, .inquiry textarea {
+  font-family: var(--sans); font-size: 1rem; color: var(--ink); background: #fff;
+  border: 1px solid var(--line-2); border-radius: var(--r); padding: 12px 14px; width: 100%;
+  transition: border-color .2s, box-shadow .2s;
+}
+.inquiry textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
+.inquiry input:focus, .inquiry textarea:focus { outline: none; border-color: var(--rust); box-shadow: 0 0 0 3px rgba(28,90,64,0.16); }
+.field.error input, .field.error textarea { border-color: #b5341a; box-shadow: 0 0 0 3px rgba(181,52,26,0.10); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-foot { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 6px; }
+.form-status { font-family: var(--mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+.form-status.err { color: #b5341a; }
+.form-thanks { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 3vw, 2rem); color: var(--rust); margin-top: 38px; line-height: 1.35; }
 .cta h2 { font-size: clamp(2.4rem, 6vw, 4.4rem); }
 .cta .lede { margin-bottom: 8px; }
 .mailline {
@@ -269,6 +300,7 @@ em { font-style: italic; }
   .readout p { overflow: visible; text-overflow: clip; }
   .readout .ok { color: var(--rust); }
   .hero-cta .btn { flex: 1 1 100%; justify-content: center; }
+  .field-row { grid-template-columns: 1fr; }
 }
 
 /* ---------- reduced motion ---------- */

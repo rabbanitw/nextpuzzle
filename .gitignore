@@ -1,0 +1,5 @@
+# secrets & server-only files — never publish
+hostgatorkey.txt
+*.pub
+contact.php
+.DS_Store

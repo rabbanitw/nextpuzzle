@@ -62,4 +62,81 @@
   /* footer year */
   var yr = document.getElementById('year');
   if (yr) yr.textContent = new Date().getFullYear();
+
+  /* inquiry form — client validation + async submit */
+  var form = document.getElementById('inquiry');
+  if (form) {
+    var statusEl = document.getElementById('form-status');
+    var submitBtn = document.getElementById('f-submit');
+
+    function clearErrors() {
+      form.querySelectorAll('.field.error').forEach(function (f) { f.classList.remove('error'); });
+      statusEl.className = 'form-status';
+      statusEl.textContent = '';
+    }
+    function markError(name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      if (el && el.closest('.field')) el.closest('.field').classList.add('error');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      clearErrors();
+
+      if (!form.checkValidity()) {
+        form.querySelectorAll('input, textarea').forEach(function (el) {
+          if (el.name !== 'website' && !el.checkValidity()) markError(el.name);
+        });
+        statusEl.classList.add('err');
+        statusEl.textContent = 'Please add your name, company, a valid e-mail, and a message.';
+        return;
+      }
+
+      var original = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      var payload = new FormData(form);
+      // Submit; if the host's bot-check interstitial answers (sets a humans_* cookie
+      // and asks to reload), replicate it and retry once.
+      function post(retried) {
+        return fetch(form.action, {
+          method: 'POST', body: payload, credentials: 'same-origin',
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        }).then(function (r) {
+          return r.text().then(function (text) {
+            var challenge = text.match(/humans_\d+=1/);
+            if (challenge && !retried) {
+              document.cookie = challenge[0] + '; path=/; max-age=86400; samesite=Lax';
+              return post(true);
+            }
+            var data = null;
+            try { data = JSON.parse(text); } catch (e) {}
+            return { ok: r.ok, data: data };
+          });
+        });
+      }
+
+      post(false)
+        .then(function (res) {
+          if (res.ok && res.data && res.data.ok) {
+            form.innerHTML = '<p class="form-thanks">Thank you — your note is on its way. ' +
+              'We\'ll be in touch soon.</p>';
+          } else {
+            statusEl.classList.add('err');
+            statusEl.textContent = (res.data && res.data.error) ||
+              'Something went wrong — please try again in a moment.';
+            (res.data && res.data.fields || []).forEach(markError);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = original;
+          }
+        })
+        .catch(function () {
+          statusEl.classList.add('err');
+          statusEl.textContent = 'Network error — please check your connection and try again.';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = original;
+        });
+    });
+  }
 })();

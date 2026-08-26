@@ -1,0 +1,10 @@
+# nextpuzzleai.com — static site; override inherited parent (WordPress) rules
+DirectoryIndex index.html
+Options -Indexes
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+RewriteBase /
+# Force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
