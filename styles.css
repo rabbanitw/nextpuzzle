@@ -4,9 +4,10 @@
    ============================================================ */
 
 :root {
-  /* paper / ink */
-  --paper:     #122c1f;   /* deep forest-green background */
-  --paper-2:   #1a3a2a;   /* raised panel */
+  /* alternating bands: near-black base + emerald green sections */
+  --paper:     #0e120f;   /* near-black — base + "black" sections */
+  --green:     #1b4337;   /* emerald — "green" sections */
+  --paper-2:   #1a221c;   /* raised panel on black */
   --ink:       #edf0e8;   /* bone text */
   --ink-2:     #b8c5bc;   /* muted bone */
   --muted:     #7e8f84;   /* dim green-grey */
@@ -41,11 +42,10 @@ body {
   line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  /* faint printed-paper tint */
-  background-image:
-    radial-gradient(120% 80% at 100% 0%, rgba(84,185,138,0.10), transparent 55%),
-    radial-gradient(90% 70% at 0% 100%, rgba(0,0,0,0.22), transparent 60%);
-  background-attachment: fixed;
+}
+/* full-bleed section helper: color spans the viewport, content stays centered */
+.section, .footer {
+  padding-inline: max(clamp(18px, 5vw, 40px), calc((100% - var(--maxw)) / 2));
 }
 a { color: inherit; text-decoration: none; }
 ::selection { background: var(--rust); color: #fff; }
@@ -101,7 +101,8 @@ em { font-style: italic; }
   padding: 8px 12px; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; color: var(--ink); }
 
 /* ---------- shared layout ---------- */
-.section { max-width: var(--maxw); margin: 0 auto; padding: clamp(72px, 11vw, 128px) clamp(18px, 5vw, 40px); }
+.section { padding-block: clamp(72px, 11vw, 128px); }
+.thesis { background: var(--green); }   /* alternating band */
 .section-head { max-width: 720px; margin-bottom: 60px; }
 .kicker {
   font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
@@ -124,9 +125,11 @@ em { font-style: italic; }
 
 /* ---------- hero ---------- */
 .hero {
-  position: relative; max-width: var(--maxw); margin: 0 auto;
-  padding: clamp(150px, 21vh, 220px) clamp(18px, 5vw, 40px) clamp(56px, 8vw, 96px);
+  position: relative; background: var(--green);   /* first band */
+  padding-top: clamp(150px, 21vh, 220px); padding-bottom: clamp(56px, 8vw, 96px);
+  padding-inline: max(clamp(18px, 5vw, 40px), calc((100% - var(--maxw)) / 2));
 }
+.hero > .frame-mark { display: none; }   /* crop-marks don't suit full-bleed bands */
 .eyebrow { font-size: 12px; letter-spacing: 0.16em; color: var(--muted); margin-bottom: 30px; }
 .hero-title { font-size: clamp(3rem, 9.2vw, 7rem); max-width: 15ch; letter-spacing: -0.02em; }
 .hero-title .ital { color: var(--gold); display: inline; }
@@ -258,7 +261,7 @@ em { font-style: italic; }
 .cta .frame-mark.br { bottom: 12px; right: 12px; }
 
 /* ---------- footer ---------- */
-.footer { max-width: var(--maxw); margin: 0 auto; padding: 50px clamp(18px,5vw,40px); border-top: 1px solid var(--ink); }
+.footer { background: var(--green); padding-block: 54px; }   /* closing band */
 .footer-top { display: flex; align-items: baseline; gap: 10px; }
 .footer-name { font-family: var(--serif); font-size: 1.4rem; }
 .footer-tag { font-family: var(--serif); font-style: italic; color: var(--ink-2); font-size: 1.15rem; margin-top: 6px; }

@@ -3,3 +3,6 @@ hostgatorkey.txt
 *.pub
 contact.php
 .DS_Store
+
+# local deploy helper (contains server coordinates)
+deploy.sh
