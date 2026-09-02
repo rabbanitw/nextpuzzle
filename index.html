@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260901-22" />
+  <link rel="stylesheet" href="styles.css?v=20260902-02" />
 </head>
 <body>
   <!-- scrolling capability ticker -->
@@ -141,13 +141,18 @@
             </span>
           </button>
 
+          <p class="service-current" aria-live="polite">
+            <span class="service-current-ref">S—01 / 04</span>
+            <span class="service-current-name">AI Security Education</span>
+          </p>
+
           <div class="service-dots" role="tablist" aria-label="Service categories">
             <button class="service-dot is-active" type="button" role="tab" aria-selected="true" aria-controls="service-panel-0" data-service="0"><span class="sr-only">AI Security Education</span></button>
             <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-1" data-service="1"><span class="sr-only">Research and Advisory</span></button>
             <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-2" data-service="2"><span class="sr-only">Custom Agents and Prototypes</span></button>
             <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-3" data-service="3"><span class="sr-only">Cyber Threat Insights</span></button>
           </div>
-          <p class="cube-hint">Move to explore · click to rotate</p>
+          <p class="cube-hint"><span class="hint-pointer">Move to explore · click to rotate</span><span class="hint-touch">Tap cube to change service</span></p>
         </div>
 
         <div class="service-panels">
@@ -178,7 +183,7 @@
           <article class="service-panel" id="service-panel-2" role="tabpanel" hidden>
             <span class="entry-ref">S—03 / 04</span>
             <h3>Custom Agents &amp; <span class="ital">Prototypes</span></h3>
-            <p>Small, purpose-built prototypes that help teams explore where AI agents may support research, analysis, and security workflows.</p>
+            <p>Purpose-built prototypes and evaluations that help teams explore where AI agents can support research, analysis, and security workflows—and test how agents and LLMs perform under realistic conditions.</p>
             <ul class="specs">
               <li>Workflow discovery &amp; prototyping</li>
               <li>Human-in-the-loop agent design</li>
@@ -279,6 +284,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260901-14"></script>
+  <script src="script.js?v=20260902-02"></script>
 </body>
 </html>

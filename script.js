@@ -35,6 +35,8 @@
   var cubeTilt = document.getElementById('cubeTilt');
   var serviceDots = Array.prototype.slice.call(document.querySelectorAll('.service-dot'));
   var servicePanels = Array.prototype.slice.call(document.querySelectorAll('.service-panel'));
+  var serviceCurrentRef = document.querySelector('.service-current-ref');
+  var serviceCurrentName = document.querySelector('.service-current-name');
   var rotationTimer = 0;
   var iconDrawTimer = 0;
 
@@ -183,6 +185,10 @@
       panel.hidden = i !== index;
       panel.classList.toggle('is-active', i === index);
     });
+    if (serviceCurrentRef && serviceCurrentName) {
+      serviceCurrentRef.textContent = servicePanels[index].querySelector('.entry-ref').textContent;
+      serviceCurrentName.textContent = serviceDots[index].textContent.trim();
+    }
     if (focusDot) serviceDots[index].focus();
   }
 
@@ -261,6 +267,7 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
     reveals.forEach(function (el, i) {
+      if (el.closest('.hero')) { el.classList.add('in'); return; }
       el.style.transitionDelay = (Math.min(i % 3, 2) * 0.07) + 's';
       io.observe(el);
     });
