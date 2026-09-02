@@ -6,3 +6,6 @@ contact.php
 
 # local deploy helper (contains server coordinates)
 deploy.sh
+
+# maintenance guide (server coordinates) — not for the public repo
+README.md
