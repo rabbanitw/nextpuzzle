@@ -66,10 +66,6 @@
           if (index === missing[faceIndex]) {
             path.setAttribute('class', 'cube-hole');
             svg.appendChild(path);
-            var loose = path.cloneNode(false);
-            loose.setAttribute('class', 'cube-loose');
-            loose.setAttribute('transform', 'translate(' + (col * 100 + 24) + ' ' + (row * 100 - 22) + ') scale(.96)');
-            svg.appendChild(loose);
           } else {
             path.setAttribute('class', 'cube-piece tone-' + ((index + faceIndex) % 4));
             svg.appendChild(path);
