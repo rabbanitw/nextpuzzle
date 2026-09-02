@@ -36,6 +36,7 @@
   var serviceDots = Array.prototype.slice.call(document.querySelectorAll('.service-dot'));
   var servicePanels = Array.prototype.slice.call(document.querySelectorAll('.service-panel'));
   var rotationTimer = 0;
+  var iconDrawTimer = 0;
 
   function puzzlePath(top, right, bottom, left) {
     var d = 'M0 0';
@@ -64,7 +65,7 @@
         ['M22 24a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 45a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 66a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 15a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 35a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 55a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 75a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 30a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 60a5 5 0 1 1 0 10a5 5 0 1 1 0-10', 'icon-detail']
       ],
       threat: [
-        ['M50 15c10 8 20 11 31 13v20c0 19-12 30-31 38-19-8-31-19-31-38V28c11-2 21-5 31-13z', ''],
+        ['M50 14L82 27V49C82 68 69 81 50 88C31 81 18 68 18 49V27Z', ''],
         ['M50 34a18 18 0 1 1 0 36a18 18 0 1 1 0-36 M50 52l13-10 M50 52h17 M50 52v-13', 'icon-detail']
       ],
       system: [
@@ -119,11 +120,44 @@
     });
   }
 
+  function drawServiceIcon(index, delay) {
+    var faces = ['.cube-front', '.cube-left', '.cube-top', '.cube-back'];
+    if (iconDrawTimer) clearTimeout(iconDrawTimer);
+    document.querySelectorAll('.piece-icon path').forEach(function (path) {
+      path.getAnimations().forEach(function (animation) { animation.cancel(); });
+      path.style.strokeDashoffset = '0';
+      path.style.opacity = '1';
+    });
+    var paths = Array.prototype.slice.call(document.querySelectorAll(faces[index] + ' .piece-icon path'));
+    paths.forEach(function (path) {
+      path.style.strokeDashoffset = path.style.getPropertyValue('--path-length');
+      path.style.opacity = '0';
+    });
+    if (reduce) {
+      paths.forEach(function (path) { path.style.strokeDashoffset = '0'; path.style.opacity = '1'; });
+      return;
+    }
+    iconDrawTimer = setTimeout(function () {
+      paths.forEach(function (path) {
+        var animation = path.animate([
+          { strokeDashoffset: path.style.getPropertyValue('--path-length') + 'px', opacity: 0 },
+          { strokeDashoffset: '0px', opacity: 1 }
+        ], { duration: 1200, easing: 'cubic-bezier(.2,.72,.2,1)', fill: 'forwards' });
+        animation.finished.then(function () {
+          path.style.strokeDashoffset = '0';
+          path.style.opacity = '1';
+          animation.cancel();
+        }).catch(function () {});
+      });
+    }, delay);
+  }
+
   function selectService(index, focusDot) {
     if (!serviceExplorer) return;
     index = (index + serviceDots.length) % serviceDots.length;
     var previous = Number(serviceExplorer.getAttribute('data-active-service'));
     serviceExplorer.setAttribute('data-active-service', String(index));
+    drawServiceIcon(index, previous === index ? 0 : 250);
     if (previous !== index) {
       serviceExplorer.classList.add('is-rotating');
       if (cubeTilt) cubeTilt.style.transform = '';
@@ -146,14 +180,6 @@
   if (serviceExplorer && serviceCube) {
     buildCubeFaces();
     selectService(0, false);
-    if ('IntersectionObserver' in window) {
-      var cubeObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) { serviceExplorer.classList.toggle('cube-awake', entry.isIntersecting); });
-      }, { threshold: 0.08 });
-      cubeObserver.observe(serviceExplorer);
-    } else {
-      serviceExplorer.classList.add('cube-awake');
-    }
     serviceDots.forEach(function (dot) {
       dot.addEventListener('click', function () { selectService(Number(dot.getAttribute('data-service')), false); });
       dot.addEventListener('keydown', function (e) {

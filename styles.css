@@ -304,19 +304,6 @@ em { font-style: italic; }
 .service-explorer[data-active-service="1"] .cube-left .piece-icon,
 .service-explorer[data-active-service="2"] .cube-top .piece-icon,
 .service-explorer[data-active-service="3"] .cube-back .piece-icon { opacity: 1; }
-.service-explorer.cube-awake[data-active-service="0"] .cube-front .piece-icon path,
-.service-explorer.cube-awake[data-active-service="1"] .cube-left .piece-icon path,
-.service-explorer.cube-awake[data-active-service="2"] .cube-top .piece-icon path,
-.service-explorer.cube-awake[data-active-service="3"] .cube-back .piece-icon path {
-  animation: icon-trace 2.4s ease-out both;
-}
-.service-explorer.is-rotating .piece-icon path {
-  animation: none !important; stroke-dashoffset: var(--path-length); opacity: 0;
-}
-@keyframes icon-trace {
-  0%, 12% { stroke-dashoffset: var(--path-length); opacity: 0; }
-  72%, 100% { stroke-dashoffset: 0; opacity: 1; }
-}
 .service-dots { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }
 .service-dot {
   width: 8px; height: 8px; border: 0; border-radius: 50%; padding: 0;
