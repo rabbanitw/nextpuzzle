@@ -262,10 +262,10 @@ em { font-style: italic; }
 }
 .puzzle-cube::before { transform: translateZ(-72px) rotateZ(2deg); opacity: .6; }
 .puzzle-cube::after { transform: translateZ(-124px) rotateZ(-3deg) scale(1.05); opacity: .32; }
-.service-explorer[data-active-service="0"] .puzzle-cube { transform: rotateX(-22deg) rotateY(-34deg) rotateZ(-2deg); }
-.service-explorer[data-active-service="1"] .puzzle-cube { transform: rotateX(-18deg) rotateY(58deg) rotateZ(3deg); }
-.service-explorer[data-active-service="2"] .puzzle-cube { transform: rotateX(-68deg) rotateY(24deg) rotateZ(-8deg); }
-.service-explorer[data-active-service="3"] .puzzle-cube { transform: rotateX(28deg) rotateY(146deg) rotateZ(5deg); }
+.service-explorer[data-active-service="0"] .puzzle-cube { transform: translateY(-4px) rotateX(-22deg) rotateY(-34deg) rotateZ(-2deg); }
+.service-explorer[data-active-service="1"] .puzzle-cube { transform: translateY(-15px) rotateX(-18deg) rotateY(58deg) rotateZ(3deg); }
+.service-explorer[data-active-service="2"] .puzzle-cube { transform: translateY(15px) rotateX(-68deg) rotateY(24deg) rotateZ(-8deg); }
+.service-explorer[data-active-service="3"] .puzzle-cube { transform: translateY(-2px) rotateX(28deg) rotateY(146deg) rotateZ(5deg); }
 .cube-face {
   position: absolute; inset: 0; display: block; overflow: visible;
   background: color-mix(in srgb, var(--paper) 7%, transparent);
@@ -304,7 +304,7 @@ em { font-style: italic; }
 .service-panel h3 .ital { color: var(--counter); }
 .service-panel > p { max-width: 49ch; margin-top: 24px; color: var(--ink-2); font-size: 1.04rem; }
 .service-panel .specs { margin-top: 28px; }
-@keyframes service-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes service-in { from { opacity: 0; } to { opacity: 1; } }
 
 .catalog { border-top: 1px solid var(--line); }
 .entry {
