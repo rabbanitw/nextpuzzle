@@ -18,6 +18,7 @@
   --rust:      #54b98a;
   --ember:     #74d3a4;
   --rust-deep: #2f7d5b;
+  --ticker-text: #74d3a4;
 
   /* cool mint counterpoint for display italics and ticker marks */
   --counter:   #b9f5d3;
@@ -53,6 +54,7 @@
   --rust:      #315c48;
   --ember:     #315c48;
   --rust-deep: #234737;
+  --ticker-text: #183d2e;
   --counter:   #c5225f;
   --cube-1:    #c5225f;
   --cube-2:    #315c48;
@@ -97,13 +99,13 @@ em { font-style: italic; }
 /* ---------- ticker ---------- */
 .ticker {
   position: fixed; top: 0; left: 0; right: 0; z-index: 110; height: var(--ticker-h);
-  background: var(--paper); color: var(--ember);   /* mint-green text on near-black */
+  background: var(--paper); color: var(--ticker-text);
   font-size: 11px; letter-spacing: 0.14em; line-height: 1.2;
   overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--line);
 }
 .ticker-track { display: inline-flex; align-items: center; gap: 26px; height: 100%; padding-left: 100%; animation: marquee 44s linear infinite; }
 .ticker-track i { color: var(--counter); font-style: normal; }
-.ticker span { opacity: 0.92; }
+.ticker span { opacity: 1; }
 @keyframes marquee { to { transform: translateX(-100%); } }
 
 /* ---------- nav ---------- */
