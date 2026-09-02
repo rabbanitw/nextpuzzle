@@ -229,31 +229,39 @@ em { font-style: italic; }
 }
 .cube-column { min-width: 0; text-align: center; }
 .cube-stage {
-  --cube-size: clamp(240px, 28vw, 330px);
-  position: relative; display: grid; place-items: center; width: 100%; min-height: 470px;
+  --cube-size: clamp(230px, 26vw, 305px);
+  position: relative; display: grid; place-items: center; width: 100%; min-height: 560px;
   border: 0; padding: 0; color: inherit; background: transparent; cursor: pointer;
   perspective: 1050px; perspective-origin: 50% 44%; isolation: isolate;
 }
 .cube-stage:focus-visible { outline: 2px solid var(--counter); outline-offset: 7px; border-radius: 4px; }
 .cube-aura {
-  position: absolute; z-index: -1; width: min(84%, 420px); aspect-ratio: 1;
-  background: radial-gradient(circle, color-mix(in srgb, var(--counter) 15%, transparent) 0, transparent 67%);
-  filter: blur(10px); transform: translateY(14px); pointer-events: none;
+  position: absolute; z-index: -1; width: min(92%, 470px); aspect-ratio: 1;
+  background: radial-gradient(circle, color-mix(in srgb, var(--counter) 9%, transparent) 0, transparent 69%);
+  filter: blur(18px); transform: translateY(8px); pointer-events: none;
 }
 .cube-tilt { width: var(--cube-size); height: var(--cube-size); transform-style: preserve-3d; transition: transform .18s ease-out; }
 .puzzle-cube {
   position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d;
   transform: rotateX(-18deg) rotateY(34deg); transition: transform 1s cubic-bezier(.2,.75,.18,1);
 }
+.puzzle-cube::before, .puzzle-cube::after {
+  content: ""; position: absolute; inset: -13%; pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--ink) 23%, transparent); border-radius: 16px;
+  background:
+    linear-gradient(90deg, transparent 49.8%, color-mix(in srgb, var(--ink) 11%, transparent) 50%, transparent 50.2%),
+    linear-gradient(transparent 49.8%, color-mix(in srgb, var(--ink) 11%, transparent) 50%, transparent 50.2%);
+}
+.puzzle-cube::before { transform: translateZ(-72px) rotateZ(2deg); opacity: .6; }
+.puzzle-cube::after { transform: translateZ(-124px) rotateZ(-3deg) scale(1.05); opacity: .32; }
 .service-explorer[data-active-service="0"] .puzzle-cube { transform: rotateX(-22deg) rotateY(-34deg) rotateZ(-2deg); }
 .service-explorer[data-active-service="1"] .puzzle-cube { transform: rotateX(-18deg) rotateY(58deg) rotateZ(3deg); }
 .service-explorer[data-active-service="2"] .puzzle-cube { transform: rotateX(-68deg) rotateY(24deg) rotateZ(-8deg); }
 .service-explorer[data-active-service="3"] .puzzle-cube { transform: rotateX(28deg) rotateY(146deg) rotateZ(5deg); }
 .cube-face {
   position: absolute; inset: 0; display: block; overflow: visible;
-  background: color-mix(in srgb, var(--cube-core) 88%, transparent);
-  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
-  box-shadow: inset 0 0 26px rgba(0,0,0,.16);
+  background: color-mix(in srgb, var(--paper) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
   backface-visibility: hidden;
 }
 .cube-front  { transform: translateZ(calc(var(--cube-size) / 2)); }
@@ -263,17 +271,18 @@ em { font-style: italic; }
 .cube-top    { transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2)); }
 .cube-bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2)); }
 .cube-face svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.cube-piece { stroke: color-mix(in srgb, var(--cube-core) 72%, transparent); stroke-width: 2.6; stroke-linejoin: round; }
-.cube-piece.tone-0 { fill: var(--cube-1); }
-.cube-piece.tone-1 { fill: var(--cube-2); }
-.cube-piece.tone-2 { fill: var(--cube-3); }
-.cube-piece.tone-3 { fill: var(--cube-4); }
-.cube-hole { fill: var(--cube-core); stroke: var(--counter); stroke-width: 2; stroke-dasharray: 6 6; opacity: .9; }
+.cube-piece { stroke-width: 1.55; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.cube-piece.tone-0 { fill: color-mix(in srgb, var(--cube-1) 8%, transparent); stroke: var(--cube-1); }
+.cube-piece.tone-1 { fill: color-mix(in srgb, var(--cube-2) 7%, transparent); stroke: var(--cube-2); }
+.cube-piece.tone-2 { fill: color-mix(in srgb, var(--cube-3) 4%, transparent); stroke: color-mix(in srgb, var(--ink) 58%, transparent); }
+.cube-piece.tone-3 { fill: color-mix(in srgb, var(--cube-4) 7%, transparent); stroke: var(--cube-4); }
+.cube-hole { fill: color-mix(in srgb, var(--counter) 3%, transparent); stroke: var(--counter); stroke-width: 1.5; stroke-dasharray: 7 6; opacity: .7; vector-effect: non-scaling-stroke; }
 .cube-loose {
-  fill: var(--cube-1); stroke: var(--counter); stroke-width: 2;
-  filter: drop-shadow(8px 10px 7px rgba(0,0,0,.25)); opacity: .94;
+  fill: color-mix(in srgb, var(--counter) 13%, transparent); stroke: var(--counter); stroke-width: 1.8;
+  filter: drop-shadow(8px 10px 8px color-mix(in srgb, var(--counter) 18%, transparent));
+  opacity: .96; vector-effect: non-scaling-stroke;
 }
-.service-dots { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 4px; }
+.service-dots { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }
 .service-dot {
   width: 8px; height: 8px; border: 0; border-radius: 50%; padding: 0;
   background: var(--line-2); cursor: pointer; transition: width .25s var(--ease), background .25s, transform .25s;
@@ -413,7 +422,7 @@ em { font-style: italic; }
   .step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .thesis-grid { grid-template-columns: 1fr; }
   .service-explorer { grid-template-columns: 1fr; gap: 20px; min-height: 0; }
-  .cube-stage { --cube-size: clamp(220px, 46vw, 290px); min-height: 440px; }
+  .cube-stage { --cube-size: clamp(215px, 43vw, 275px); min-height: 510px; }
   .service-panels { min-height: 360px; max-width: 620px; }
 }
 @media (max-width: 520px) {
@@ -430,7 +439,7 @@ em { font-style: italic; }
   .field-row { grid-template-columns: 1fr; }
   .section-head { margin-bottom: 38px; }
   .service-explorer { padding-top: 18px; }
-  .cube-stage { --cube-size: min(62vw, 230px); min-height: 390px; }
+  .cube-stage { --cube-size: min(58vw, 218px); min-height: 445px; }
   .cube-hint { font-size: 9px; }
   .service-panels { min-height: 410px; align-items: start; padding-top: 32px; }
   .service-panel h3 { font-size: clamp(2.35rem, 12vw, 3.4rem); }
