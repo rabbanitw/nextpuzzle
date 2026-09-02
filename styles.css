@@ -136,6 +136,8 @@ em { font-style: italic; }
 
 /* ---------- shared layout ---------- */
 .section { padding-block: clamp(72px, 11vw, 128px); }
+#services { padding-bottom: clamp(36px, 4vw, 52px); }
+.contact { padding-top: clamp(36px, 4vw, 52px); }
 .thesis { background: var(--green); }   /* alternating band */
 .section-head { max-width: 720px; margin-bottom: 60px; }
 .kicker {
