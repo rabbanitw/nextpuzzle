@@ -296,7 +296,8 @@ em { font-style: italic; }
 .piece-icon { pointer-events: none; opacity: .38; transition: opacity .35s; }
 .piece-icon path {
   fill: none; stroke: var(--cube-icon); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
-  vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: var(--path-length) var(--path-length); stroke-dashoffset: 0;
 }
 .piece-icon .icon-detail { stroke-width: 2; }
 .service-explorer[data-active-service="0"] .cube-front .piece-icon,
@@ -309,9 +310,11 @@ em { font-style: italic; }
 .service-explorer.cube-awake[data-active-service="3"] .cube-back .piece-icon path {
   animation: icon-trace 2.4s ease-out both;
 }
-.service-explorer.is-rotating .piece-icon path { animation: none !important; }
+.service-explorer.is-rotating .piece-icon path {
+  animation: none !important; stroke-dashoffset: var(--path-length); opacity: 0;
+}
 @keyframes icon-trace {
-  0%, 12% { stroke-dashoffset: 1; opacity: .2; }
+  0%, 12% { stroke-dashoffset: var(--path-length); opacity: 0; }
   72%, 100% { stroke-dashoffset: 0; opacity: 1; }
 }
 .service-dots { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }

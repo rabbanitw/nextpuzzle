@@ -78,11 +78,13 @@
     drawings[iconForFace[faceIndex]].forEach(function (line) {
       var iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       iconPath.setAttribute('d', line[0]);
-      iconPath.setAttribute('pathLength', '1');
       if (line[1]) iconPath.setAttribute('class', line[1]);
       group.appendChild(iconPath);
     });
     svg.appendChild(group);
+    group.querySelectorAll('path').forEach(function (iconPath) {
+      iconPath.style.setProperty('--path-length', iconPath.getTotalLength());
+    });
   }
 
   function buildCubeFaces() {
@@ -93,6 +95,7 @@
       var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('viewBox', '-18 -18 336 336');
       svg.setAttribute('focusable', 'false');
+      face.appendChild(svg);
       for (var row = 0; row < 3; row++) {
         for (var col = 0; col < 3; col++) {
           var index = row * 3 + col;
@@ -113,7 +116,6 @@
           }
         }
       }
-      face.appendChild(svg);
     });
   }
 
