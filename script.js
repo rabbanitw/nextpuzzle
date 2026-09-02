@@ -131,9 +131,10 @@
     });
     var paths = Array.prototype.slice.call(document.querySelectorAll(faces[index] + ' .piece-icon path'));
     paths.forEach(function (path) {
-      var length = path.style.getPropertyValue('--path-length');
-      path.style.strokeDasharray = length + ' ' + length;
-      path.style.strokeDashoffset = length;
+      var drawLength = parseFloat(path.style.getPropertyValue('--path-length')) + 2;
+      path.dataset.drawLength = drawLength;
+      path.style.strokeDasharray = drawLength + ' ' + drawLength;
+      path.style.strokeDashoffset = drawLength;
       path.style.opacity = '0';
     });
     if (reduce) {
@@ -146,12 +147,12 @@
     }
     iconDrawTimer = setTimeout(function () {
       paths.forEach(function (path) {
+        var drawLength = path.dataset.drawLength;
         var animation = path.animate([
-          { strokeDashoffset: path.style.getPropertyValue('--path-length') + 'px', opacity: 0 },
+          { strokeDashoffset: drawLength + 'px', opacity: 0 },
           { strokeDashoffset: '0px', opacity: 1 }
-        ], { duration: 2400, easing: 'cubic-bezier(.2,.72,.2,1)', fill: 'forwards' });
+        ], { duration: 2400, easing: 'linear', fill: 'forwards' });
         animation.finished.then(function () {
-          path.style.strokeDasharray = 'none';
           path.style.strokeDashoffset = '0';
           path.style.opacity = '1';
           animation.cancel();
