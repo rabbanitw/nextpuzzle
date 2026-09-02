@@ -47,7 +47,7 @@
   --rust:      #315c48;
   --ember:     #315c48;
   --rust-deep: #234737;
-  --counter:   #c52245;
+  --counter:   #c5225f;
 }
 
 :root[data-theme="dark"] { color-scheme: dark; }
