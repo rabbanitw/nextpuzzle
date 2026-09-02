@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Grenze+Gotisch:wght@500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260901-7" />
+  <link rel="stylesheet" href="styles.css?v=20260901-8" />
 </head>
 <body>
   <!-- scrolling capability ticker -->
@@ -121,66 +121,80 @@
           useful applications of AI through education, research, and hands-on collaboration.</p>
       </div>
 
-      <div class="catalog reveal">
-        <article class="entry">
-          <span class="entry-ref">S—01</span>
-          <div class="entry-body">
-            <h3>AI Security Education</h3>
-            <p>Clear, current education for leaders and technical teams navigating the security
-              implications of AI and machine learning.</p>
+      <div class="service-explorer reveal" data-active-service="0">
+        <div class="cube-column">
+          <button class="cube-stage" id="serviceCube" type="button" aria-label="Show next service">
+            <span class="cube-aura" aria-hidden="true"></span>
+            <span class="cube-tilt" id="cubeTilt" aria-hidden="true">
+              <span class="puzzle-cube" id="puzzleCube">
+                <span class="cube-face cube-front" data-face="0"></span>
+                <span class="cube-face cube-right" data-face="1"></span>
+                <span class="cube-face cube-back" data-face="2"></span>
+                <span class="cube-face cube-left" data-face="3"></span>
+                <span class="cube-face cube-top" data-face="4"></span>
+                <span class="cube-face cube-bottom" data-face="5"></span>
+              </span>
+            </span>
+          </button>
+
+          <div class="service-dots" role="tablist" aria-label="Service categories">
+            <button class="service-dot is-active" type="button" role="tab" aria-selected="true" aria-controls="service-panel-0" data-service="0"><span class="sr-only">AI Security Education</span></button>
+            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-1" data-service="1"><span class="sr-only">Research and Advisory</span></button>
+            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-2" data-service="2"><span class="sr-only">Custom Agents and Prototypes</span></button>
+            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-3" data-service="3"><span class="sr-only">Cyber Threat Insights</span></button>
+          </div>
+          <p class="cube-hint">Move to explore · click to rotate</p>
+        </div>
+
+        <div class="service-panels">
+          <article class="service-panel is-active" id="service-panel-0" role="tabpanel">
+            <span class="entry-ref">S—01 / 04</span>
+            <h3>AI Security <span class="ital">Education</span></h3>
+            <p>Clear, current education for leaders and technical teams navigating the security implications of AI and machine learning.</p>
             <ul class="specs">
               <li>Executive briefings &amp; team workshops</li>
               <li>AI threat landscape education</li>
               <li>Prompt-injection &amp; agent-risk demonstrations</li>
               <li>Responsible AI fundamentals</li>
             </ul>
-          </div>
-        </article>
+          </article>
 
-        <article class="entry">
-          <span class="entry-ref">S—02</span>
-          <div class="entry-body">
-            <h3>Research &amp; Advisory</h3>
-            <p>Independent research and practical guidance to help teams evaluate AI security questions
-              without the hype.</p>
+          <article class="service-panel" id="service-panel-1" role="tabpanel" hidden>
+            <span class="entry-ref">S—02 / 04</span>
+            <h3>Research &amp; <span class="ital">Advisory</span></h3>
+            <p>Independent research and practical guidance to help teams evaluate AI security questions without the hype.</p>
             <ul class="specs">
               <li>Literature &amp; technology reviews</li>
               <li>AI use-case and risk mapping</li>
               <li>Security-focused design feedback</li>
               <li>NIST AI RMF orientation</li>
             </ul>
-          </div>
-        </article>
+          </article>
 
-        <article class="entry">
-          <span class="entry-ref">S—03</span>
-          <div class="entry-body">
-            <h3>Custom Agents &amp; Prototypes</h3>
-            <p>Small, purpose-built prototypes that help teams explore where AI agents may support
-              research, analysis, and security workflows.</p>
+          <article class="service-panel" id="service-panel-2" role="tabpanel" hidden>
+            <span class="entry-ref">S—03 / 04</span>
+            <h3>Custom Agents &amp; <span class="ital">Prototypes</span></h3>
+            <p>Small, purpose-built prototypes that help teams explore where AI agents may support research, analysis, and security workflows.</p>
             <ul class="specs">
               <li>Workflow discovery &amp; prototyping</li>
               <li>Human-in-the-loop agent design</li>
               <li>Agent training &amp; evaluation harnesses</li>
               <li>Benchmarking, evals &amp; test scenarios</li>
             </ul>
-          </div>
-        </article>
+          </article>
 
-        <article class="entry">
-          <span class="entry-ref">S—04</span>
-          <div class="entry-body">
-            <h3>Cyber Threat Insights</h3>
-            <p>Focused analysis that connects developments in cyber threats with the ways organizations
-              are adopting AI.</p>
+          <article class="service-panel" id="service-panel-3" role="tabpanel" hidden>
+            <span class="entry-ref">S—04 / 04</span>
+            <h3>Cyber Threat <span class="ital">Insights</span></h3>
+            <p>Focused analysis that connects developments in cyber threats with the ways organizations are adopting AI.</p>
             <ul class="specs">
               <li>Threat trend briefings</li>
               <li>Adversary tactic &amp; technique research</li>
               <li>AI-focused scenario discussions</li>
               <li>Tabletop exercise facilitation</li>
             </ul>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -261,6 +275,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260901-3"></script>
+  <script src="script.js?v=20260901-4"></script>
 </body>
 </html>

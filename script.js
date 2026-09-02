@@ -29,6 +29,101 @@
     });
   }
 
+  /* services — interactive jigsaw cube + accessible service carousel */
+  var serviceExplorer = document.querySelector('.service-explorer');
+  var serviceCube = document.getElementById('serviceCube');
+  var cubeTilt = document.getElementById('cubeTilt');
+  var serviceDots = Array.prototype.slice.call(document.querySelectorAll('.service-dot'));
+  var servicePanels = Array.prototype.slice.call(document.querySelectorAll('.service-panel'));
+
+  function puzzlePath(top, right, bottom, left) {
+    var d = 'M0 0';
+    d += top ? ' L38 0 C38 ' + (-14 * top) + ' 62 ' + (-14 * top) + ' 62 0 L100 0' : ' L100 0';
+    d += right ? ' L100 38 C' + (100 + 14 * right) + ' 38 ' + (100 + 14 * right) + ' 62 100 62 L100 100' : ' L100 100';
+    d += bottom ? ' L62 100 C62 ' + (100 + 14 * bottom) + ' 38 ' + (100 + 14 * bottom) + ' 38 100 L0 100' : ' L0 100';
+    d += left ? ' L0 62 C' + (-14 * left) + ' 62 ' + (-14 * left) + ' 38 0 38 L0 0' : ' L0 0';
+    return d + ' Z';
+  }
+
+  function buildCubeFaces() {
+    var horizontal = [[1, -1, 1], [-1, 1, -1]];
+    var vertical = [[-1, 1], [1, -1], [-1, 1]];
+    var missing = [4, 2, 6, 0, 8, 3];
+    document.querySelectorAll('.cube-face').forEach(function (face, faceIndex) {
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '-18 -18 336 336');
+      svg.setAttribute('focusable', 'false');
+      for (var row = 0; row < 3; row++) {
+        for (var col = 0; col < 3; col++) {
+          var index = row * 3 + col;
+          var top = row === 0 ? 0 : -horizontal[row - 1][col];
+          var right = col === 2 ? 0 : vertical[row][col];
+          var bottom = row === 2 ? 0 : horizontal[row][col];
+          var left = col === 0 ? 0 : -vertical[row][col - 1];
+          var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', puzzlePath(top, right, bottom, left));
+          path.setAttribute('transform', 'translate(' + (col * 100 + 2) + ' ' + (row * 100 + 2) + ') scale(.96)');
+          if (index === missing[faceIndex]) {
+            path.setAttribute('class', 'cube-hole');
+            svg.appendChild(path);
+            var loose = path.cloneNode(false);
+            loose.setAttribute('class', 'cube-loose');
+            loose.setAttribute('transform', 'translate(' + (col * 100 + 24) + ' ' + (row * 100 - 22) + ') scale(.96)');
+            svg.appendChild(loose);
+          } else {
+            path.setAttribute('class', 'cube-piece tone-' + ((index + faceIndex) % 4));
+            svg.appendChild(path);
+          }
+        }
+      }
+      face.appendChild(svg);
+    });
+  }
+
+  function selectService(index, focusDot) {
+    if (!serviceExplorer) return;
+    index = (index + serviceDots.length) % serviceDots.length;
+    serviceExplorer.setAttribute('data-active-service', String(index));
+    serviceDots.forEach(function (dot, i) {
+      var active = i === index;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', active ? 'true' : 'false');
+      dot.setAttribute('tabindex', active ? '0' : '-1');
+    });
+    servicePanels.forEach(function (panel, i) {
+      panel.hidden = i !== index;
+      panel.classList.toggle('is-active', i === index);
+    });
+    if (focusDot) serviceDots[index].focus();
+  }
+
+  if (serviceExplorer && serviceCube) {
+    buildCubeFaces();
+    selectService(0, false);
+    serviceDots.forEach(function (dot) {
+      dot.addEventListener('click', function () { selectService(Number(dot.getAttribute('data-service')), false); });
+      dot.addEventListener('keydown', function (e) {
+        var current = Number(dot.getAttribute('data-service'));
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); selectService(current + 1, true); }
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); selectService(current - 1, true); }
+        if (e.key === 'Home') { e.preventDefault(); selectService(0, true); }
+        if (e.key === 'End') { e.preventDefault(); selectService(serviceDots.length - 1, true); }
+      });
+    });
+    serviceCube.addEventListener('click', function () {
+      selectService(Number(serviceExplorer.getAttribute('data-active-service')) + 1, false);
+    });
+    if (!reduce && cubeTilt) {
+      serviceCube.addEventListener('pointermove', function (e) {
+        var rect = serviceCube.getBoundingClientRect();
+        var x = ((e.clientX - rect.left) / rect.width - .5) * 2;
+        var y = ((e.clientY - rect.top) / rect.height - .5) * 2;
+        cubeTilt.style.transform = 'rotateX(' + (-y * 6).toFixed(2) + 'deg) rotateY(' + (x * 7).toFixed(2) + 'deg) translateZ(10px)';
+      });
+      serviceCube.addEventListener('pointerleave', function () { cubeTilt.style.transform = ''; });
+    }
+  }
+
   /* sticky nav hairline */
   function onScroll() {
     if (window.scrollY > 20) nav.classList.add('scrolled');
