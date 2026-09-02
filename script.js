@@ -4,7 +4,30 @@
 
   var nav = document.getElementById('nav');
   var navToggle = document.getElementById('navToggle');
+  var themeToggle = document.getElementById('themeToggle');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* theme switch — system preference by default, remembered after manual choice */
+  function reflectTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (!themeToggle) return;
+    var next = theme === 'dark' ? 'light' : 'dark';
+    var label = 'Switch to ' + next + ' theme';
+    themeToggle.setAttribute('aria-label', label);
+    themeToggle.setAttribute('title', label);
+    var themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#122c1f' : '#dbe9de');
+  }
+
+  if (themeToggle) {
+    reflectTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+    themeToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('next-puzzle-theme', next); } catch (e) {}
+      reflectTheme(next);
+    });
+  }
 
   /* sticky nav hairline */
   function onScroll() {
