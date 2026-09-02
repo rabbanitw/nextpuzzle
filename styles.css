@@ -351,7 +351,7 @@ em { font-style: italic; }
   --paper: #ffffff; --paper-2: #eef0ea;
   --ink: #16201a; --ink-2: #333c36; --muted: #69726b;
   --line: rgba(22,32,26,0.14); --line-2: rgba(22,32,26,0.30);
-  --rust: #1c5a40; --ember: #2c8160; --counter: #1c5a40;
+  --rust: #1c5a40; --ember: #2c8160;
   position: relative; background: #fff; color: var(--ink);
   border: 1px solid var(--line-2); border-radius: var(--r);
   padding: clamp(46px, 7vw, 88px) clamp(24px, 5vw, 64px);
