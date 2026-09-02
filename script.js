@@ -275,18 +275,58 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* hero readout: type the final status line */
-  var typed = document.getElementById('typed');
-  if (typed) {
-    var msg = ' 12 shipped';
-    if (reduce) { typed.textContent = msg; }
-    else {
-      var i = 0;
-      (function tick() {
-        if (i <= msg.length) { typed.textContent = msg.slice(0, i++); setTimeout(tick, 65); }
-        else { typed.classList.add('done'); }
-      })();
-    }
+  /* hero readout: split-flap operational updates */
+  var readoutValues = Array.prototype.slice.call(document.querySelectorAll('.readout-value'));
+  var readoutStatuses = Array.prototype.slice.call(document.querySelectorAll('.readout-status'));
+  var readoutFrames = [
+    [
+      ['mapping AI + infrastructure attack surface', 'mapped'],
+      ['probing models · prompts · agents · data', '4 findings'],
+      ['shipping fixes ranked by exploitability', '12 shipped']
+    ],
+    [
+      ['tracing agent tools + trust boundaries', 'indexed'],
+      ['testing injection · exfiltration · misuse', '7 scenarios'],
+      ['prioritizing controls by real-world impact', 'queued']
+    ],
+    [
+      ['inventorying models + data dependencies', 'verified'],
+      ['simulating adversarial user behavior', '3 findings'],
+      ['validating guardrails against regressions', 'passing']
+    ]
+  ];
+  var flapGlyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789·+/#';
+
+  function splitFlap(element, finalText, rowDelay) {
+    element.textContent = '';
+    Array.prototype.forEach.call(finalText, function (character, index) {
+      var span = document.createElement('span');
+      span.className = 'split-char';
+      span.textContent = character === ' ' ? '\u00a0' : flapGlyphs.charAt(Math.floor(Math.random() * flapGlyphs.length));
+      element.appendChild(span);
+      if (character === ' ') return;
+      var turns = 2 + Math.floor(Math.random() * 4);
+      var step = 0;
+      setTimeout(function flip() {
+        span.classList.remove('is-flipping');
+        void span.offsetWidth;
+        span.classList.add('is-flipping');
+        span.textContent = step === turns ? character : flapGlyphs.charAt(Math.floor(Math.random() * flapGlyphs.length));
+        if (step++ < turns) setTimeout(flip, 70 + Math.random() * 45);
+        else setTimeout(function () { span.classList.remove('is-flipping'); }, 120);
+      }, rowDelay + index * 12);
+    });
+  }
+
+  if (readoutValues.length && !reduce) {
+    var readoutFrame = 0;
+    setInterval(function () {
+      readoutFrame = (readoutFrame + 1) % readoutFrames.length;
+      readoutFrames[readoutFrame].forEach(function (row, index) {
+        splitFlap(readoutValues[index], row[0], index * 90);
+        splitFlap(readoutStatuses[index], row[1], index * 90 + 100);
+      });
+    }, 2800);
   }
 
   /* footer year */
