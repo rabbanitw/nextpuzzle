@@ -36,18 +36,18 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --paper:     #f4f7f2;
-  --green:     #dbe9de;
-  --paper-2:   #e7eee7;
-  --ink:       #13251d;
-  --ink-2:     #35483e;
-  --muted:     #5d7066;
-  --line:      rgba(19,37,29,0.14);
-  --line-2:    rgba(19,37,29,0.28);
-  --rust:      #176044;
-  --ember:     #216f50;
-  --rust-deep: #104c35;
-  --counter:   #176044;
+  --paper:     #ffffff;
+  --green:     #f7eff6;
+  --paper-2:   #f4f0f4;
+  --ink:       #211820;
+  --ink-2:     #51434f;
+  --muted:     #756774;
+  --line:      rgba(33,24,32,0.13);
+  --line-2:    rgba(33,24,32,0.26);
+  --rust:      #315c48;
+  --ember:     #315c48;
+  --rust-deep: #234737;
+  --counter:   #941b67;
 }
 
 :root[data-theme="dark"] { color-scheme: dark; }

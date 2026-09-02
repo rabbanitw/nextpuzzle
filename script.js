@@ -16,7 +16,7 @@
     themeToggle.setAttribute('aria-label', label);
     themeToggle.setAttribute('title', label);
     var themeColor = document.querySelector('meta[name="theme-color"]');
-    if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#122c1f' : '#dbe9de');
+    if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#122c1f' : '#f7eff6');
   }
 
   if (themeToggle) {
