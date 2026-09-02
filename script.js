@@ -53,13 +53,14 @@
         ['M50 35v39 M25 43c8-1 14 1 19 5 M75 43c-8-1-14 1-19 5', 'icon-detail']
       ],
       research: [
-        ['M24 27a9 9 0 1 0 .1 0 M16 57c2-13 6-20 14-20 7 0 11 6 13 16', ''],
-        ['M51 34h31v24H51z M66 58v8 M55 66h23 M43 73h40l-4 7H39z', ''],
-        ['M39 53l15 10 M42 49l16 11', 'icon-motion']
+        ['M27 17a9 9 0 1 1 0 18a9 9 0 1 1 0-18 M20 40c8-5 16-3 21 4 4 5 5 12 6 18 M19 41v34h20', ''],
+        ['M52 31h31v27H52z M67 58v8 M56 66h23 M43 74h41l-4 7H39z', ''],
+        ['M32 47c5 2 8 7 12 12l13 7 M37 44c5 3 8 8 11 13l12 6', 'icon-motion'],
+        ['M20 24h6 M28 24h6 M26 24h2 M22 38l5 8 6-8 M27 46v18 M19 75h25', 'icon-detail']
       ],
       agent: [
-        ['M50 16v18 M50 66v18 M16 50h18 M66 50h18 M26 26l12 12 M74 26L62 38 M26 74l12-12 M74 74L62 62', ''],
-        ['M38 34h24l5 5v22l-5 5H38l-5-5V39z M43 46h14 M43 55h14', 'icon-detail']
+        ['M50 50L22 24 M50 50L78 24 M50 50L22 76 M50 50L78 76 M22 24H78 M22 76H78', ''],
+        ['M50 42a8 8 0 1 1 0 16a8 8 0 1 1 0-16 M22 19a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 19a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 71a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 71a5 5 0 1 1 0 10a5 5 0 1 1 0-10', 'icon-detail']
       ],
       threat: [
         ['M50 15c10 8 20 11 31 13v20c0 19-12 30-31 38-19-8-31-19-31-38V28c11-2 21-5 31-13z', ''],
@@ -134,6 +135,14 @@
   if (serviceExplorer && serviceCube) {
     buildCubeFaces();
     selectService(0, false);
+    if ('IntersectionObserver' in window) {
+      var cubeObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { serviceExplorer.classList.toggle('cube-awake', entry.isIntersecting); });
+      }, { threshold: 0.08 });
+      cubeObserver.observe(serviceExplorer);
+    } else {
+      serviceExplorer.classList.add('cube-awake');
+    }
     serviceDots.forEach(function (dot) {
       dot.addEventListener('click', function () { selectService(Number(dot.getAttribute('data-service')), false); });
       dot.addEventListener('keydown', function (e) {
@@ -148,13 +157,25 @@
       selectService(Number(serviceExplorer.getAttribute('data-active-service')) + 1, false);
     });
     if (!reduce && cubeTilt) {
+      var tiltFrame = 0;
+      var tiltX = 0;
+      var tiltY = 0;
       serviceCube.addEventListener('pointermove', function (e) {
         var rect = serviceCube.getBoundingClientRect();
-        var x = ((e.clientX - rect.left) / rect.width - .5) * 2;
-        var y = ((e.clientY - rect.top) / rect.height - .5) * 2;
-        cubeTilt.style.transform = 'rotateX(' + (-y * 6).toFixed(2) + 'deg) rotateY(' + (x * 7).toFixed(2) + 'deg) translateZ(10px)';
+        tiltX = ((e.clientX - rect.left) / rect.width - .5) * 2;
+        tiltY = ((e.clientY - rect.top) / rect.height - .5) * 2;
+        if (!tiltFrame) {
+          tiltFrame = requestAnimationFrame(function () {
+            cubeTilt.style.transform = 'rotateX(' + (-tiltY * 6).toFixed(2) + 'deg) rotateY(' + (tiltX * 7).toFixed(2) + 'deg) translateZ(10px)';
+            tiltFrame = 0;
+          });
+        }
       });
-      serviceCube.addEventListener('pointerleave', function () { cubeTilt.style.transform = ''; });
+      serviceCube.addEventListener('pointerleave', function () {
+        if (tiltFrame) cancelAnimationFrame(tiltFrame);
+        tiltFrame = 0;
+        cubeTilt.style.transform = '';
+      });
     }
   }
 

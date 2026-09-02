@@ -290,14 +290,25 @@ em { font-style: italic; }
   fill: color-mix(in srgb, var(--cube-missing) 78%, transparent); stroke: var(--cube-missing);
   stroke-width: 1.7; stroke-dasharray: 7 5; opacity: 1; vector-effect: non-scaling-stroke;
 }
-.piece-icon { pointer-events: none; }
+.piece-icon { pointer-events: none; opacity: .38; transition: opacity .35s; }
 .piece-icon path {
   fill: none; stroke: var(--cube-icon); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
   vector-effect: non-scaling-stroke; stroke-dasharray: 190; stroke-dashoffset: 0;
+}
+.piece-icon .icon-detail { stroke-width: 2; }
+.service-explorer[data-active-service="0"] .cube-front .piece-icon,
+.service-explorer[data-active-service="1"] .cube-left .piece-icon,
+.service-explorer[data-active-service="2"] .cube-top .piece-icon,
+.service-explorer[data-active-service="3"] .cube-back .piece-icon { opacity: 1; }
+.service-explorer.cube-awake[data-active-service="0"] .cube-front .piece-icon path,
+.service-explorer.cube-awake[data-active-service="1"] .cube-left .piece-icon path,
+.service-explorer.cube-awake[data-active-service="2"] .cube-top .piece-icon path,
+.service-explorer.cube-awake[data-active-service="3"] .cube-back .piece-icon path {
   animation: icon-trace 3.8s ease-in-out infinite;
 }
-.piece-icon .icon-detail { stroke-width: 2; animation-delay: -.9s; }
-.piece-icon .icon-motion { animation: icon-type 1.15s ease-in-out infinite alternate; }
+.service-explorer.cube-awake[data-active-service="1"] .cube-left .piece-icon .icon-motion {
+  animation: icon-trace 3.8s ease-in-out infinite, icon-type 1.15s ease-in-out infinite alternate;
+}
 @keyframes icon-trace {
   0%, 12% { stroke-dashoffset: 190; opacity: .25; }
   42%, 82% { stroke-dashoffset: 0; opacity: 1; }
