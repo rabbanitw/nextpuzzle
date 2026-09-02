@@ -28,6 +28,7 @@
   --cube-4:    #7fc9a8;
   --cube-core: #07130e;
   --cube-missing: #9bdff0;
+  --cube-icon: #174f60;
 
   /* type */
   --serif: 'Instrument Serif', 'Times New Roman', serif;
@@ -62,6 +63,7 @@
   --cube-4:    #e58aa8;
   --cube-core: #29151f;
   --cube-missing: #8fd7eb;
+  --cube-icon: #174f60;
 }
 
 :root[data-theme="dark"] { color-scheme: dark; }
@@ -288,6 +290,20 @@ em { font-style: italic; }
   fill: color-mix(in srgb, var(--cube-missing) 78%, transparent); stroke: var(--cube-missing);
   stroke-width: 1.7; stroke-dasharray: 7 5; opacity: 1; vector-effect: non-scaling-stroke;
 }
+.piece-icon { pointer-events: none; }
+.piece-icon path {
+  fill: none; stroke: var(--cube-icon); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+  vector-effect: non-scaling-stroke; stroke-dasharray: 190; stroke-dashoffset: 0;
+  animation: icon-trace 3.8s ease-in-out infinite;
+}
+.piece-icon .icon-detail { stroke-width: 2; animation-delay: -.9s; }
+.piece-icon .icon-motion { animation: icon-type 1.15s ease-in-out infinite alternate; }
+@keyframes icon-trace {
+  0%, 12% { stroke-dashoffset: 190; opacity: .25; }
+  42%, 82% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: .4; }
+}
+@keyframes icon-type { from { transform: translateX(-1.5px); } to { transform: translateX(2px); } }
 .service-dots { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 20px; }
 .service-dot {
   width: 8px; height: 8px; border: 0; border-radius: 50%; padding: 0;

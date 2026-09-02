@@ -45,6 +45,43 @@
     return d + ' Z';
   }
 
+  function addPieceIcon(svg, faceIndex, col, row) {
+    var iconForFace = ['education', 'system', 'threat', 'research', 'agent', 'system'];
+    var drawings = {
+      education: [
+        ['M14 28c14-5 25-1 36 7v39c-11-8-22-10-36-5z M86 28c-14-5-25-1-36 7v39c11-8 22-10 36-5z', ''],
+        ['M50 35v39 M25 43c8-1 14 1 19 5 M75 43c-8-1-14 1-19 5', 'icon-detail']
+      ],
+      research: [
+        ['M24 27a9 9 0 1 0 .1 0 M16 57c2-13 6-20 14-20 7 0 11 6 13 16', ''],
+        ['M51 34h31v24H51z M66 58v8 M55 66h23 M43 73h40l-4 7H39z', ''],
+        ['M39 53l15 10 M42 49l16 11', 'icon-motion']
+      ],
+      agent: [
+        ['M50 16v18 M50 66v18 M16 50h18 M66 50h18 M26 26l12 12 M74 26L62 38 M26 74l12-12 M74 74L62 62', ''],
+        ['M38 34h24l5 5v22l-5 5H38l-5-5V39z M43 46h14 M43 55h14', 'icon-detail']
+      ],
+      threat: [
+        ['M50 15c10 8 20 11 31 13v20c0 19-12 30-31 38-19-8-31-19-31-38V28c11-2 21-5 31-13z', ''],
+        ['M50 34a18 18 0 1 1-18 18 M50 52l13-10 M50 52h17 M50 52v-13', 'icon-detail']
+      ],
+      system: [
+        ['M18 29h64v42H18z M28 42h12v12H28z M48 42h24 M48 51h18 M28 62h44', ''],
+        ['M25 21v8 M75 21v8 M25 71v8 M75 71v8', 'icon-detail']
+      ]
+    };
+    var group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    group.setAttribute('class', 'piece-icon piece-icon-' + iconForFace[faceIndex]);
+    group.setAttribute('transform', 'translate(' + (col * 100 + 9) + ' ' + (row * 100 + 9) + ') scale(.82)');
+    drawings[iconForFace[faceIndex]].forEach(function (line) {
+      var iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      iconPath.setAttribute('d', line[0]);
+      if (line[1]) iconPath.setAttribute('class', line[1]);
+      group.appendChild(iconPath);
+    });
+    svg.appendChild(group);
+  }
+
   function buildCubeFaces() {
     var horizontal = [[1, -1, 1], [-1, 1, -1]];
     var vertical = [[-1, 1], [1, -1], [-1, 1]];
@@ -66,6 +103,7 @@
           if (index === missing[faceIndex]) {
             path.setAttribute('class', 'cube-hole');
             svg.appendChild(path);
+            addPieceIcon(svg, faceIndex, col, row);
           } else {
             path.setAttribute('class', 'cube-piece tone-' + ((index + faceIndex) % 4));
             svg.appendChild(path);
