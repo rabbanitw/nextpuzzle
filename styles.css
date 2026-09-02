@@ -107,7 +107,11 @@ em { font-style: italic; }
   backdrop-filter: saturate(120%) blur(8px); -webkit-backdrop-filter: saturate(120%) blur(8px);
 }
 .brand { display: flex; align-items: baseline; gap: 10px; margin-right: auto; }
-.brand-glyph { color: var(--rust); font-size: 1.1rem; transform: translateY(1px); }
+.brand-glyph {
+  width: 24px; height: auto; flex: 0 0 auto; color: var(--rust); transform: translateY(2px);
+  fill: none; stroke: currentColor; stroke-width: 1.5; vector-effect: non-scaling-stroke;
+}
+.brand-glyph .fib-spiral { stroke: var(--counter); stroke-width: 1.35; stroke-linecap: round; }
 .brand-name { font-family: var(--serif); font-size: 1.35rem; letter-spacing: -0.02em; }
 .nav-links { display: flex; gap: 30px; }
 .nav-links a { font-family: var(--serif); font-size: 1.05rem; color: var(--ink-2); transition: color .2s; }
