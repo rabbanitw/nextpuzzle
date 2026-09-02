@@ -125,16 +125,23 @@
     if (iconDrawTimer) clearTimeout(iconDrawTimer);
     document.querySelectorAll('.piece-icon path').forEach(function (path) {
       path.getAnimations().forEach(function (animation) { animation.cancel(); });
+      path.style.strokeDasharray = 'none';
       path.style.strokeDashoffset = '0';
       path.style.opacity = '1';
     });
     var paths = Array.prototype.slice.call(document.querySelectorAll(faces[index] + ' .piece-icon path'));
     paths.forEach(function (path) {
-      path.style.strokeDashoffset = path.style.getPropertyValue('--path-length');
+      var length = path.style.getPropertyValue('--path-length');
+      path.style.strokeDasharray = length + ' ' + length;
+      path.style.strokeDashoffset = length;
       path.style.opacity = '0';
     });
     if (reduce) {
-      paths.forEach(function (path) { path.style.strokeDashoffset = '0'; path.style.opacity = '1'; });
+      paths.forEach(function (path) {
+        path.style.strokeDasharray = 'none';
+        path.style.strokeDashoffset = '0';
+        path.style.opacity = '1';
+      });
       return;
     }
     iconDrawTimer = setTimeout(function () {
@@ -142,8 +149,9 @@
         var animation = path.animate([
           { strokeDashoffset: path.style.getPropertyValue('--path-length') + 'px', opacity: 0 },
           { strokeDashoffset: '0px', opacity: 1 }
-        ], { duration: 1200, easing: 'cubic-bezier(.2,.72,.2,1)', fill: 'forwards' });
+        ], { duration: 2400, easing: 'cubic-bezier(.2,.72,.2,1)', fill: 'forwards' });
         animation.finished.then(function () {
+          path.style.strokeDasharray = 'none';
           path.style.strokeDashoffset = '0';
           path.style.opacity = '1';
           animation.cancel();

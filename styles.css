@@ -296,8 +296,7 @@ em { font-style: italic; }
 .piece-icon { pointer-events: none; opacity: .38; transition: opacity .35s; }
 .piece-icon path {
   fill: none; stroke: var(--cube-icon); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-  stroke-dasharray: var(--path-length) var(--path-length); stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke; stroke-dasharray: none; stroke-dashoffset: 0;
 }
 .piece-icon .icon-detail { stroke-width: 2; }
 .service-explorer[data-active-service="0"] .cube-front .piece-icon,
