@@ -35,6 +35,7 @@
   var cubeTilt = document.getElementById('cubeTilt');
   var serviceDots = Array.prototype.slice.call(document.querySelectorAll('.service-dot'));
   var servicePanels = Array.prototype.slice.call(document.querySelectorAll('.service-panel'));
+  var rotationTimer = 0;
 
   function puzzlePath(top, right, bottom, left) {
     var d = 'M0 0';
@@ -53,10 +54,8 @@
         ['M50 35v39 M25 43c8-1 14 1 19 5 M75 43c-8-1-14 1-19 5', 'icon-detail']
       ],
       research: [
-        ['M27 17a9 9 0 1 1 0 18a9 9 0 1 1 0-18 M20 40c8-5 16-3 21 4 4 5 5 12 6 18 M19 41v34h20', ''],
-        ['M52 31h31v27H52z M67 58v8 M56 66h23 M43 74h41l-4 7H39z', ''],
-        ['M32 47c5 2 8 7 12 12l13 7 M37 44c5 3 8 8 11 13l12 6', 'icon-motion'],
-        ['M20 24h6 M28 24h6 M26 24h2 M22 38l5 8 6-8 M27 46v18 M19 75h25', 'icon-detail']
+        ['M22 29L50 20 M22 29L50 40 M22 29L50 60 M22 50L50 20 M22 50L50 40 M22 50L50 60 M22 71L50 40 M22 71L50 60 M22 71L50 80 M50 20L78 35 M50 40L78 35 M50 40L78 65 M50 60L78 35 M50 60L78 65 M50 80L78 65', ''],
+        ['M22 24a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 45a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 66a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 15a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 35a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 55a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 75a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 30a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 60a5 5 0 1 1 0 10a5 5 0 1 1 0-10', 'icon-detail']
       ],
       agent: [
         ['M50 50L22 24 M50 50L78 24 M50 50L22 76 M50 50L78 76 M22 24H78 M22 76H78', ''],
@@ -118,7 +117,14 @@
   function selectService(index, focusDot) {
     if (!serviceExplorer) return;
     index = (index + serviceDots.length) % serviceDots.length;
+    var previous = Number(serviceExplorer.getAttribute('data-active-service'));
     serviceExplorer.setAttribute('data-active-service', String(index));
+    if (previous !== index) {
+      serviceExplorer.classList.add('is-rotating');
+      if (cubeTilt) cubeTilt.style.transform = '';
+      if (rotationTimer) clearTimeout(rotationTimer);
+      rotationTimer = setTimeout(function () { serviceExplorer.classList.remove('is-rotating'); }, 920);
+    }
     serviceDots.forEach(function (dot, i) {
       var active = i === index;
       dot.classList.toggle('is-active', active);
@@ -166,7 +172,7 @@
         tiltY = ((e.clientY - rect.top) / rect.height - .5) * 2;
         if (!tiltFrame) {
           tiltFrame = requestAnimationFrame(function () {
-            cubeTilt.style.transform = 'rotateX(' + (-tiltY * 6).toFixed(2) + 'deg) rotateY(' + (tiltX * 7).toFixed(2) + 'deg) translateZ(10px)';
+            cubeTilt.style.transform = 'translate3d(' + (tiltX * 4).toFixed(2) + 'px,' + (tiltY * 4).toFixed(2) + 'px,10px)';
             tiltFrame = 0;
           });
         }
