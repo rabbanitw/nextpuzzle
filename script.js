@@ -54,12 +54,14 @@
         ['M50 35v39 M25 43c8-1 14 1 19 5 M75 43c-8-1-14 1-19 5', 'icon-detail']
       ],
       research: [
-        ['M22 29L50 20 M22 29L50 40 M22 29L50 60 M22 50L50 20 M22 50L50 40 M22 50L50 60 M22 71L50 40 M22 71L50 60 M22 71L50 80 M50 20L78 35 M50 40L78 35 M50 40L78 65 M50 60L78 35 M50 60L78 65 M50 80L78 65', ''],
-        ['M22 24a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 45a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 66a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 15a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 35a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 55a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 75a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 30a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 60a5 5 0 1 1 0 10a5 5 0 1 1 0-10', 'icon-detail']
+        ['M27 17a9 9 0 1 1 0 18a9 9 0 1 1 0-18 M20 40c8-5 16-3 21 4 4 5 5 12 6 18 M19 41v34h20', ''],
+        ['M52 31h31v27H52z M67 58v8 M56 66h23 M43 74h41l-4 7H39z', ''],
+        ['M32 47c5 2 8 7 12 12l13 7 M37 44c5 3 8 8 11 13l12 6', 'icon-detail'],
+        ['M20 24h6 M28 24h6 M26 24h2 M22 38l5 8 6-8 M27 46v18 M19 75h25', 'icon-detail']
       ],
       agent: [
-        ['M50 50L22 24 M50 50L78 24 M50 50L22 76 M50 50L78 76 M22 24H78 M22 76H78', ''],
-        ['M50 42a8 8 0 1 1 0 16a8 8 0 1 1 0-16 M22 19a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 19a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 71a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 71a5 5 0 1 1 0 10a5 5 0 1 1 0-10', 'icon-detail']
+        ['M22 29L50 20 M22 29L50 40 M22 29L50 60 M22 50L50 20 M22 50L50 40 M22 50L50 60 M22 71L50 40 M22 71L50 60 M22 71L50 80 M50 20L78 35 M50 40L78 35 M50 40L78 65 M50 60L78 35 M50 60L78 65 M50 80L78 65', ''],
+        ['M22 24a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 45a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M22 66a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 15a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 35a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 55a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M50 75a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 30a5 5 0 1 1 0 10a5 5 0 1 1 0-10 M78 60a5 5 0 1 1 0 10a5 5 0 1 1 0-10', 'icon-detail']
       ],
       threat: [
         ['M50 15c10 8 20 11 31 13v20c0 19-12 30-31 38-19-8-31-19-31-38V28c11-2 21-5 31-13z', ''],
@@ -76,6 +78,7 @@
     drawings[iconForFace[faceIndex]].forEach(function (line) {
       var iconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       iconPath.setAttribute('d', line[0]);
+      iconPath.setAttribute('pathLength', '1');
       if (line[1]) iconPath.setAttribute('class', line[1]);
       group.appendChild(iconPath);
     });
@@ -186,9 +189,12 @@
   }
 
   /* sticky nav hairline */
+  var navScrolled = null;
   function onScroll() {
-    if (window.scrollY > 20) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
+    var next = window.scrollY > 20;
+    if (next === navScrolled) return;
+    navScrolled = next;
+    nav.classList.toggle('scrolled', next);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -234,6 +240,7 @@
       var i = 0;
       (function tick() {
         if (i <= msg.length) { typed.textContent = msg.slice(0, i++); setTimeout(tick, 65); }
+        else { typed.classList.add('done'); }
       })();
     }
   }
