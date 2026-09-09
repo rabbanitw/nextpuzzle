@@ -44,26 +44,26 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --paper:     #f8fbff;
-  --green:     #edf6ff;
-  --paper-2:   #e7f1fc;
-  --ink:       #102a43;
-  --ink-2:     #334e68;
-  --muted:     #627d98;
-  --line:      rgba(16,42,67,0.12);
-  --line-2:    rgba(16,42,67,0.24);
-  --rust:      #1769aa;
-  --ember:     #2486ce;
-  --rust-deep: #0b4f87;
-  --ticker-text: #155d99;
-  --counter:   #136fc0;
-  --cube-1:    #2b8bd0;
-  --cube-2:    #1769aa;
-  --cube-3:    #102a43;
-  --cube-4:    #75bce9;
-  --cube-core: #dceeff;
-  --cube-missing: #9ddcff;
-  --cube-icon: #073b66;
+  --paper:     #fbfaf4;
+  --green:     #eef3e8;
+  --paper-2:   #e6eee5;
+  --ink:       #173f35;
+  --ink-2:     #49655b;
+  --muted:     #5b7068;
+  --line:      rgba(23,63,53,0.12);
+  --line-2:    rgba(23,63,53,0.24);
+  --rust:      #267a5a;
+  --ember:     #328e69;
+  --rust-deep: #126047;
+  --ticker-text: #1c6e50;
+  --counter:   #126047;
+  --cube-1:    #56a985;
+  --cube-2:    #267a5a;
+  --cube-3:    #173f35;
+  --cube-4:    #8bc9ad;
+  --cube-core: #dfece5;
+  --cube-missing: #e7a92f;
+  --cube-icon: #173f35;
 }
 
 :root[data-theme="dark"] { color-scheme: dark; }
@@ -444,11 +444,11 @@ em { font-style: italic; }
   padding: clamp(46px, 7vw, 88px) clamp(24px, 5vw, 64px);
 }
 [data-theme="light"] .cta {
-  --paper: #f8fbff; --paper-2: #e7f1fc;
-  --ink: #102a43; --ink-2: #334e68; --muted: #627d98;
-  --line: rgba(16,42,67,.12); --line-2: rgba(16,42,67,.24);
-  --rust: #1769aa; --ember: #2486ce;
-  background: #f8fbff;
+  --paper: #fbfaf4; --paper-2: #e6eee5;
+  --ink: #173f35; --ink-2: #49655b; --muted: #5b7068;
+  --line: rgba(23,63,53,.12); --line-2: rgba(23,63,53,.24);
+  --rust: #267a5a; --ember: #328e69;
+  background: #fbfaf4;
 }
 [data-theme="light"] .inquiry input,
 [data-theme="light"] .inquiry textarea,
