@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Next Puzzle</title>
+  <meta name="description" content="Meet Next Puzzle co-founders Noureen Njoroge and Tahseen Rabbani—leaders in cybersecurity, AI research, governance, and secure engineering." />
+  <meta name="theme-color" content="#edf6ff" />
+  <meta name="color-scheme" content="dark light" />
+  <script>
+    (function () {
+      var saved = localStorage.getItem('np-theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    }());
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20260908-04" />
+  <link rel="stylesheet" href="about.css?v=20260908-01" />
+</head>
+<body class="about-page">
+  <div class="puzzle-field" id="puzzleField" aria-hidden="true"></div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-group">
+    <span>SECURE AI ENGINEERING</span><i>✦</i><span>EXECUTIVE ADVISORY</span><i>✦</i><span>AI GOVERNANCE</span><i>✦</i><span>CYBER RESILIENCE</span><i>✦</i><span>EVIDENCE-DRIVEN ASSURANCE</span><i>✦</i>
+  </div><div class="ticker-group"><span>SECURE AI ENGINEERING</span><i>✦</i><span>EXECUTIVE ADVISORY</span><i>✦</i><span>AI GOVERNANCE</span><i>✦</i><span>CYBER RESILIENCE</span><i>✦</i><span>EVIDENCE-DRIVEN ASSURANCE</span><i>✦</i></div></div></div>
+
+  <header class="nav" id="nav">
+    <a href="index.html" class="brand" aria-label="Next Puzzle home"><img class="brand-logo" src="assets/next-puzzle-logo.jpeg" alt="" width="40" height="40" /><span class="brand-name">Next&nbsp;Puzzle</span></a>
+    <nav class="nav-links" aria-label="Primary"><a href="index.html#services">Services</a><a href="index.html#frameworks">Frameworks</a><a href="about.html" aria-current="page">About Us</a><a href="index.html#contact">Contact</a></nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><span class="theme-icon theme-icon-light" aria-hidden="true">☼</span><span class="theme-icon theme-icon-dark" aria-hidden="true">☾</span></button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
+  </header>
+
+  <main id="top">
+    <section class="about-hero">
+      <p class="eyebrow reveal">// ABOUT US — TWO DISCIPLINES · ONE MISSION</p>
+      <div class="about-hero-grid">
+        <h1 class="reveal">Built where AI ambition meets <span class="ital">security reality.</span></h1>
+        <div class="about-hero-copy reveal"><p>Next Puzzle was founded by Noureen Njoroge and Tahseen Rabbani to close the gap between what artificial intelligence can do and what organizations can safely trust it to do.</p><p>We unite executive cyber leadership with frontier AI research and engineering—so strategy survives contact with real systems, real adversaries, and real accountability.</p></div>
+      </div>
+      <div class="founder-portrait-pair reveal" aria-hidden="true"><img src="bio_photos/noureen-njoroge.jpg" alt="" /><img src="bio_photos/tahseen-rabbani.jpeg" alt="" /></div>
+    </section>
+
+    <section class="founders" aria-labelledby="founders-title">
+      <div class="founders-head reveal"><p class="kicker">§ Co-founders</p><h2 id="founders-title">Different vantage points.<br /><span class="ital">Shared standards.</span></h2><p>Our work is grounded in the belief that trusted AI requires both organizational judgment and technical depth.</p></div>
+
+      <article class="founder founder-noureen reveal">
+        <figure><img src="bio_photos/noureen-njoroge.jpg" alt="Noureen Njoroge" width="1179" height="1444" loading="lazy" /></figure>
+        <div class="founder-copy"><p class="founder-index">01 / CYBER LEADERSHIP</p><h3>Noureen Njoroge</h3><p class="founder-role">Co-Founder &amp; CEO</p><p class="founder-lead">Noureen helps boards, executives, and security teams turn emerging AI risk into practical decisions, durable operating models, and measurable resilience.</p><div class="founder-bio"><p>She brings more than 15 years of enterprise security leadership across public and private sectors. At Nike, she led global cyber threat intelligence and enterprise threat management teams, advising executive leadership and the board through high-severity incidents. Her integrated threat-management work reduced mean time to detect from four days to one and mean time to respond from 36 hours to four.</p><p>Previously, Noureen built Cisco’s cyber threat analytics service from eight pilot clients into a $25M annual business serving more than 45 enterprise clients. Her board and advisory work spans cybersecurity governance, responsible AI adoption, and emerging-technology strategy.</p></div><ul class="founder-signals"><li>Two-time Cybersecurity Woman of the Year</li><li>Cisco Distinguished Engineer &amp; Cybersecurity Champion</li><li>President and Co-founder, North Carolina Women in Cybersecurity</li><li>Executive education across Harvard, MIT, and UC Berkeley</li></ul></div>
+      </article>
+
+      <article class="founder founder-tahseen reveal">
+        <figure><img src="bio_photos/tahseen-rabbani.jpeg" alt="Tahseen Rabbani" width="800" height="800" loading="lazy" /></figure>
+        <div class="founder-copy"><p class="founder-index">02 / AI RESEARCH &amp; ENGINEERING</p><h3>Tahseen Rabbani</h3><p class="founder-role">Co-Founder · AI/ML Research &amp; Engineering</p><p class="founder-lead">Tahseen translates advanced machine-learning research into efficient, private, and rigorously evaluated AI systems.</p><div class="founder-bio"><p>He is a computer scientist whose work spans agent evaluation, distributed learning, model efficiency, privacy, and generative-media integrity. He is a Postdoctoral Scholar at the University of Chicago and a Forward Deployed Engineer at Appen, where his work includes application-security benchmarks and evaluation pipelines for frontier models.</p><p>Tahseen earned his PhD in Computer Science from the University of Maryland and has held research and technical roles at Yale, Scale AI, and Epic Systems. His peer-reviewed work has appeared at NeurIPS, ICML, ICLR, ACL, and TMLR, connecting rigorous research with real-world systems and evaluation.</p></div><ul class="founder-signals"><li>2025 Stanford Rising Star in Data Science</li><li>RSA Conference Security Scholar</li><li>Research in private, distributed, and efficient AI</li><li>Builder of benchmarks for agents, reasoning, and model integrity</li></ul></div>
+      </article>
+    </section>
+
+    <section class="about-principle">
+      <p class="kicker reveal">§ Why we built Next Puzzle</p>
+      <blockquote class="reveal">“AI trust cannot be added at the end. It has to be designed into the decisions, systems, and evidence from the beginning.”</blockquote>
+      <div class="principle-grid reveal"><p><b>Executive clarity</b><span>Make ownership, risk, and ambition explicit.</span></p><p><b>Technical credibility</b><span>Test claims against architecture, data, and adversaries.</span></p><p><b>Accountable delivery</b><span>Leave clients with evidence, capability, and control.</span></p></div>
+    </section>
+
+    <section class="about-cta">
+      <div class="reveal"><p class="kicker">§ Start a conversation</p><h2>Bring us your <span class="ital">hard problem.</span></h2><p>Whether you are shaping an AI strategy, securing an agentic system, or preparing your leaders and teams, we will meet you at the point where the stakes become real.</p><a class="hero-action hero-action-primary" href="index.html#contact">Request an executive briefing <span aria-hidden="true">→</span></a></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-top"><img class="brand-logo" src="assets/next-puzzle-logo.jpeg" alt="" width="40" height="40" /><span class="footer-name">Next Puzzle</span></div><p class="footer-tag">Build, govern, defend, and prove trusted AI.</p></div><nav class="footer-links" aria-label="Services"><b>Services</b><a href="index.html#serviceExplorer">Build</a><a href="index.html#serviceExplorer">Govern</a><a href="index.html#serviceExplorer">Defend</a><a href="index.html#serviceExplorer">Prove</a><a href="index.html#serviceExplorer">Learn</a></nav><nav class="footer-links" aria-label="Explore"><b>Explore</b><a href="index.html#frameworks">Frameworks</a><a href="index.html#featured">Solutions</a><a href="about.html">About Us</a><a href="index.html#contact">Contact</a></nav><nav class="footer-links" aria-label="Policies"><b>Trust</b><a href="responsible-consulting.html">Responsible Consulting</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a></nav></div><div class="footer-meta"><a href="index.html#contact">Contact&nbsp;→</a><span>© <span id="year">2026</span> NEXT PUZZLE — ALL RIGHTS RESERVED</span></div></footer>
+  <script src="script.js?v=20260907-06"></script>
+</body>
+</html>
