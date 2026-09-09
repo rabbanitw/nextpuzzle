@@ -137,6 +137,10 @@ em { font-style: italic; }
 .nav-links a { font-family: var(--serif); font-size: 1.05rem; color: var(--ink-2); transition: color .2s; }
 .nav-links a em { font-family: var(--mono); font-style: normal; font-size: 0.62rem; color: var(--muted); vertical-align: super; margin-right: 3px; letter-spacing: 0; }
 .nav-links a:hover { color: var(--rust); }
+.nav-social { display: flex; align-items: center; gap: 8px; margin-left: 4px; padding-left: 20px; border-left: 1px solid var(--line-2); }
+.nav-links .nav-social a { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; border: 1px solid var(--line-2); border-radius: 2px; color: var(--ink-2); font-family: var(--mono); font-size: 9px; line-height: 1; letter-spacing: .06em; text-transform: uppercase; transition: color .2s, border-color .2s, background-color .2s; }
+.nav-links .nav-social a:hover { color: var(--rust); border-color: var(--rust); background: color-mix(in srgb, var(--rust) 8%, transparent); }
+.nav-links .nav-social a:focus-visible { outline: 2px solid var(--counter); outline-offset: 3px; }
 .services-menu {
   position: absolute; top: calc(100% + 17px); left: 50%; width: 330px; padding: 10px;
   background: color-mix(in srgb, var(--paper) 97%, transparent); border: 1px solid var(--line-2);
@@ -535,6 +539,11 @@ em { font-style: italic; }
 .hero .reveal { opacity: 1; transform: none; }
 
 /* ---------- responsive ---------- */
+@media (min-width: 861px) and (max-width: 1040px) {
+  .nav-links { gap: 18px; }
+  .nav-social { padding-left: 12px; }
+  .nav-links .nav-social a { padding-inline: 7px; }
+}
 @media (max-width: 860px) {
   .nav-links { display: none; }
   .nav-toggle { display: inline-block; }
@@ -542,6 +551,7 @@ em { font-style: italic; }
     display: flex; flex-direction: column; gap: 20px; position: absolute; top: 100%; left: 0; right: 0;
     background: var(--paper); border-bottom: 1px solid var(--line); padding: 26px clamp(18px,5vw,40px);
   }
+  .nav-social { margin-left: 0; padding: 18px 0 0; border-left: 0; border-top: 1px solid var(--line); }
   .nav-services > a { display: none; }
   .services-menu { position: static; display: grid; grid-template-columns: 1fr 1fr; width: auto; padding: 0; border: 0; box-shadow: none; opacity: 1; visibility: visible; transform: none; background: transparent; }
   .services-menu a { grid-template-columns: 54px 1fr; padding: 8px 10px 8px 0; }
