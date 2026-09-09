@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Next Puzzle — AI × Cybersecurity Advisory</title>
-  <meta name="description" content="Next Puzzle is an advisory working the seam between artificial intelligence and cybersecurity — hardening the AI you ship, and turning AI into how you defend." />
-  <meta name="theme-color" content="#122c1f" />
+  <meta name="description" content="Next Puzzle helps organizations build, govern, defend, and prove trusted AI through secure engineering, accountable governance, cyber resilience, and evidence-driven assurance." />
+  <meta name="theme-color" content="#edf6ff" />
   <meta name="color-scheme" content="dark light" />
 
   <script>
@@ -18,7 +18,7 @@
   </script>
 
   <meta property="og:title" content="Next Puzzle — AI × Cybersecurity Advisory" />
-  <meta property="og:description" content="Next Puzzle secures the AI you ship and builds AI that defends — advisory at the intersection of AI and cybersecurity." />
+  <meta property="og:description" content="Build, govern, defend, and prove trusted AI with secure engineering, accountable governance, cyber resilience, and evidence-driven assurance." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nextpuzzleai.com" />
 
@@ -26,9 +26,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260902-04" />
+  <link rel="stylesheet" href="styles.css?v=20260908-04" />
 </head>
 <body>
+  <div class="puzzle-field" id="puzzleField" aria-hidden="true"></div>
   <!-- scrolling capability ticker -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
@@ -68,15 +69,22 @@
   <!-- nav -->
   <header class="nav" id="nav">
     <a href="#top" class="brand" aria-label="Next Puzzle home">
-      <svg class="brand-glyph" viewBox="0 0 34 21" aria-hidden="true">
-        <rect x="0.75" y="0.75" width="32.5" height="19.5" rx="0.75" />
-        <path class="fib-spiral" d="M1 20A20 20 0 0 0 21 0A12 12 0 0 1 33 12A8 8 0 0 1 25 20A5 5 0 0 1 20 15A3 3 0 0 1 23 12" />
-      </svg>
+      <img class="brand-logo" src="assets/next-puzzle-logo.jpeg" alt="" width="40" height="40" />
       <span class="brand-name">Next&nbsp;Puzzle</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#services">Services</a>
-      <a href="#why" hidden>Thesis</a>
+      <div class="nav-services">
+        <a href="#services" aria-haspopup="true">Services</a>
+        <div class="services-menu">
+          <a href="#serviceExplorer" data-select-service="0"><b>Build</b><span>Secure engineering &amp; trusted agents</span></a>
+          <a href="#serviceExplorer" data-select-service="1"><b>Govern</b><span>Executive advisory &amp; AI governance</span></a>
+          <a href="#serviceExplorer" data-select-service="2"><b>Defend</b><span>Agent security &amp; cyber defense</span></a>
+          <a href="#serviceExplorer" data-select-service="3"><b>Prove</b><span>Integrity, assurance &amp; trust</span></a>
+          <a href="#serviceExplorer" data-select-service="4"><b>Learn</b><span>Secure AI learning &amp; readiness</span></a>
+        </div>
+      </div>
+      <a href="#frameworks">Frameworks</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">
@@ -88,45 +96,27 @@
 
   <main id="top">
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="services">
       <span class="frame-mark tl" aria-hidden="true"></span>
       <span class="frame-mark tr" aria-hidden="true"></span>
       <span class="frame-mark bl" aria-hidden="true"></span>
       <span class="frame-mark br" aria-hidden="true"></span>
 
-      <p class="eyebrow reveal">// ADVISORY — ARTIFICIAL INTELLIGENCE × CYBERSECURITY</p>
-      <h1 class="hero-title reveal">
-        A bridge between AI
-        <span class="ital">and cybersecurity.</span>
-      </h1>
-      <p class="hero-deck reveal">
-        From education to custom agents and everything in between, Next Puzzle helps you fortify
-        the AI you ship against real&nbsp;adversaries.
-      </p>
-
-      <nav class="hero-actions" aria-label="Hero actions">
-        <a href="#contact" class="hero-action hero-action-primary">Book a strategy call <span aria-hidden="true">→</span></a>
-        <a href="#services" class="hero-action hero-action-secondary">See the work <span aria-hidden="true">↓</span></a>
-      </nav>
-
-      <div class="readout reveal" aria-hidden="true">
-        <p><span class="rk">surface</span><span class="readout-value">mapping AI + infrastructure attack surface</span><b class="ok readout-status">mapped</b></p>
-        <p><span class="rk">redteam</span><span class="readout-value">probing models · prompts · agents · data</span><b class="ok readout-status">4 findings</b></p>
-        <p><span class="rk">controls</span><span class="readout-value">shipping fixes ranked by exploitability</span><b class="ok readout-status">12 shipped</b></p>
+      <div class="hero-intro">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">// ADVISORY — ARTIFICIAL INTELLIGENCE × CYBERSECURITY</p>
+          <h1 class="hero-title reveal">Securing the AI you're racing to deploy — <span class="ital">without leaving the back door open.</span></h1>
+        </div>
+        <div class="hero-support reveal">
+          <p class="hero-deck">From education to custom agents — with the diagnostics, assessments, and governance to bridge the two — Next Puzzle fortifies the AI you deploy against real&nbsp;adversaries.</p>
+          <nav class="hero-actions" aria-label="Hero actions">
+            <a href="#contact" class="hero-action hero-action-primary">Request an executive briefing <span aria-hidden="true">→</span></a>
+            <a href="#serviceExplorer" class="hero-action hero-action-secondary">Explore our model <span aria-hidden="true">↓</span></a>
+          </nav>
+        </div>
       </div>
 
-    </section>
-
-    <!-- SERVICES -->
-    <section class="section" id="services">
-      <div class="section-head reveal">
-        <p class="kicker">§ Services</p>
-        <h2>Start with the piece<br /><span class="ital">you need.</span></h2>
-        <p class="lede">Focused engagements for teams learning about AI security, evaluating new
-          approaches, prototyping agents, or tracking emerging threats.</p>
-      </div>
-
-      <div class="service-explorer reveal" data-active-service="0">
+      <div class="service-explorer reveal" id="serviceExplorer" data-active-service="0">
         <div class="cube-column">
           <button class="cube-stage" id="serviceCube" type="button" aria-label="Show next service">
             <span class="cube-aura" aria-hidden="true"></span>
@@ -143,83 +133,163 @@
           </button>
 
           <p class="service-current" aria-live="polite">
-            <span class="service-current-ref">S—01 / 04</span>
-            <span class="service-current-name">AI Security Education</span>
+            <span class="service-current-ref">P—01 / 05</span>
+            <span class="service-current-name">Build</span>
           </p>
 
           <div class="service-dots" role="tablist" aria-label="Service categories">
-            <button class="service-dot is-active" type="button" role="tab" aria-selected="true" aria-controls="service-panel-0" data-service="0"><span class="sr-only">AI Security Education</span></button>
-            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-1" data-service="1"><span class="sr-only">Research and Advisory</span></button>
-            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-2" data-service="2"><span class="sr-only">Custom Agents and Prototypes</span></button>
-            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-3" data-service="3"><span class="sr-only">Cyber Threat Insights</span></button>
+            <button class="service-dot is-active" type="button" role="tab" aria-selected="true" aria-controls="service-panel-0" data-service="0"><span class="sr-only">Build</span></button>
+            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-1" data-service="1"><span class="sr-only">Govern</span></button>
+            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-2" data-service="2"><span class="sr-only">Defend</span></button>
+            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-3" data-service="3"><span class="sr-only">Prove</span></button>
+            <button class="service-dot" type="button" role="tab" aria-selected="false" aria-controls="service-panel-4" data-service="4"><span class="sr-only">Learn</span></button>
           </div>
           <p class="cube-hint"><span class="hint-pointer">Move to explore · click to rotate</span><span class="hint-touch">Tap cube to change service</span></p>
         </div>
 
         <div class="service-panels">
           <article class="service-panel is-active" id="service-panel-0" role="tabpanel">
-            <span class="entry-ref">S—01 / 04</span>
-            <h3>AI Security <span class="ital">Education</span></h3>
-            <p>Clear, current education for leaders and technical teams navigating the security implications of AI and machine learning.</p>
+            <span class="entry-ref">P—01 / 05 · BUILD</span>
+            <h3>Secure AI Engineering &amp; <span class="ital">Trusted Agents</span></h3>
+            <p>We design and deliver useful AI capability within secure architecture, trusted data, defined authority, and accountable workflows.</p>
             <ul class="specs">
-              <li>Executive briefings &amp; team workshops</li>
-              <li>AI threat landscape education</li>
-              <li>Prompt-injection &amp; agent-risk demonstrations</li>
-              <li>Responsible AI fundamentals</li>
+              <li>Secure AI systems</li>
+              <li>Custom AI agents &amp; prototypes</li>
+              <li>Secure RAG &amp; knowledge systems</li>
+              <li>Agent workflow &amp; integration design</li>
             </ul>
           </article>
 
           <article class="service-panel" id="service-panel-1" role="tabpanel" hidden>
-            <span class="entry-ref">S—02 / 04</span>
-            <h3>Research &amp; <span class="ital">Advisory</span></h3>
-            <p>Independent research and practical guidance to help teams evaluate AI security questions without the hype.</p>
+            <span class="entry-ref">P—02 / 05 · GOVERN</span>
+            <h3>Executive Advisory &amp; <span class="ital">AI Governance</span></h3>
+            <p>We help leaders make sound AI decisions and establish an operating model that enables innovation without unmanaged enterprise risk.</p>
             <ul class="specs">
-              <li>Literature &amp; technology reviews</li>
-              <li>AI use-case and risk mapping</li>
-              <li>Security-focused design feedback</li>
-              <li>NIST AI RMF orientation</li>
+              <li>Executive &amp; board AI advisory</li>
+              <li>AI risk &amp; readiness diagnostic</li>
+              <li>AI strategy &amp; governance</li>
+              <li>Accountability &amp; risk management</li>
             </ul>
           </article>
 
           <article class="service-panel" id="service-panel-2" role="tabpanel" hidden>
-            <span class="entry-ref">S—03 / 04</span>
-            <h3>Custom Agents &amp; <span class="ital">Prototypes</span></h3>
-            <p>Purpose-built prototypes and evaluations that help teams explore where AI agents can support research, analysis, and security workflows—and test how agents and LLMs perform under realistic conditions.</p>
+            <span class="entry-ref">P—03 / 05 · DEFEND</span>
+            <h3>Agent Security &amp; <span class="ital">AI-Enabled Defense</span></h3>
+            <p>We secure AI systems against adversarial misuse and apply AI to increase cyber team capacity, speed, coverage, and decision quality.</p>
             <ul class="specs">
-              <li>Workflow discovery &amp; prototyping</li>
-              <li>Human-in-the-loop agent design</li>
-              <li>Agent training &amp; evaluation harnesses</li>
-              <li>Benchmarking, evals &amp; test scenarios</li>
+              <li>Agent security &amp; AI identity</li>
+              <li>Cyber threat intelligence</li>
+              <li>AI-enabled cyber defense</li>
+              <li>AI incident readiness &amp; resilience</li>
             </ul>
           </article>
 
           <article class="service-panel" id="service-panel-3" role="tabpanel" hidden>
-            <span class="entry-ref">S—04 / 04</span>
-            <h3>Cyber Threat <span class="ital">Insights</span></h3>
-            <p>Focused analysis that connects developments in cyber threats with the ways organizations are adopting AI.</p>
+            <span class="entry-ref">P—04 / 05 · PROVE</span>
+            <h3>AI Integrity, Assurance &amp; <span class="ital">Trust</span></h3>
+            <p>We establish evidence that an AI system or agent is sufficiently secure, controlled, traceable, and reliable for its intended business use.</p>
             <ul class="specs">
-              <li>Threat trend briefings</li>
-              <li>Adversary tactic &amp; technique research</li>
-              <li>AI-focused scenario discussions</li>
-              <li>Tabletop exercise facilitation</li>
+              <li>Data &amp; model integrity</li>
+              <li>Audit evidence &amp; board reporting</li>
+              <li>Secure AI launch gate</li>
+              <li>Continuous AI assurance</li>
+            </ul>
+          </article>
+
+          <article class="service-panel" id="service-panel-4" role="tabpanel" hidden>
+            <span class="entry-ref">P—05 / 05 · LEARN</span>
+            <h3>Secure AI Learning &amp; <span class="ital">Readiness</span></h3>
+            <p>We equip leaders, builders, defenders, and the wider workforce with practical skills to adopt, govern, secure, and respond to AI responsibly.</p>
+            <ul class="specs">
+              <li>Executive education</li>
+              <li>Team workshops</li>
+              <li>Secure AI builder workshops</li>
+              <li>Technical training</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
+    <section class="trust-strip" aria-label="How we work">
+      <span>Secure by design</span><span>Governed autonomy</span><span>Human accountability</span><span>Evidence-driven assurance</span>
+    </section>
+
+    <section class="section pathways" id="solutions">
+      <div class="section-head reveal">
+        <p class="kicker">§ Choose your path</p>
+        <h2>Choose the support <span class="ital">your team needs.</span></h2>
+      </div>
+      <div class="path-grid reveal">
+        <a class="path-card" href="#contact">
+          <span class="entry-ref">01 / BOARD &amp; EXECUTIVES</span>
+          <h3>Make accountable AI decisions.</h3>
+          <p>Clarify value, ownership, risk appetite, and the operating boundaries required to scale with confidence.</p>
+          <b>Explore executive advisory →</b>
+        </a>
+        <a class="path-card" href="#serviceExplorer">
+          <span class="entry-ref">02 / SECURITY &amp; TECHNOLOGY</span>
+          <h3>Build and defend trusted systems.</h3>
+          <p>Connect architecture, identity, data, agent authority, testing, monitoring, and operational resilience.</p>
+          <b>Explore secure AI services →</b>
+        </a>
+        <a class="path-card" href="#serviceExplorer" data-select-service="4">
+          <span class="entry-ref">03 / TEAMS &amp; PRACTITIONERS</span>
+          <h3>Build durable human readiness.</h3>
+          <p>Equip the people adopting, governing, securing, and responding to AI with practical, role-aware skills.</p>
+          <b>Explore secure AI learning →</b>
+        </a>
+      </div>
+    </section>
+
+    <section class="section featured" id="featured">
+      <div class="section-head reveal">
+        <p class="kicker">§ Featured solutions</p>
+        <h2>Defined entry points.<br /><span class="ital">Tangible outcomes.</span></h2>
+      </div>
+      <div class="solution-grid reveal">
+        <article><span>01</span><h3>AI Risk &amp; Readiness Diagnostic</h3><p>We inventory use cases, ownership, data exposure, governance maturity, and control gaps—then convert findings into a prioritized roadmap.</p></article>
+        <article><span>02</span><h3>Trusted Agent Accelerator</h3><p>We move a valuable use case into a bounded, security-tested prototype or pilot with explicit authority, approval gates, logging, and rollback.</p></article>
+        <article><span>03</span><h3>AI Security Assessment</h3><p>We test AI applications, RAG systems, agents, integrations, and data paths against realistic misuse and adversarial scenarios.</p></article>
+        <article><span>04</span><h3>AI Incident Readiness Program</h3><p>We prepare leaders and response teams with decision rights, technical playbooks, evidence preservation, escalation paths, and tabletop exercises.</p></article>
+      </div>
+    </section>
+
+    <section class="section operating-model" id="frameworks">
+      <div class="model-head">
+        <div class="model-intro reveal">
+          <p class="kicker">§ Operating model</p>
+          <h2>Trust is an operating discipline, <span class="ital">not a label.</span></h2>
+          <p class="lede">Our five-part model connects business judgment to practical controls across the full AI lifecycle.</p>
+        </div>
+        <div class="readout model-readout reveal" aria-label="Live capability board">
+          <p><span class="rk">surface</span><span class="readout-value">mapping AI + infrastructure attack surface</span><b class="ok readout-status">mapped</b></p>
+          <p><span class="rk">redteam</span><span class="readout-value">probing models · prompts · agents · data</span><b class="ok readout-status">4 findings</b></p>
+          <p><span class="rk">controls</span><span class="readout-value">shipping fixes ranked by exploitability</span><b class="ok readout-status">12 shipped</b></p>
+        </div>
+      </div>
+      <ol class="model-steps reveal">
+        <li><span>01</span><b>Build</b><p>We create useful AI within safe technical and operational boundaries.</p></li>
+        <li><span>02</span><b>Govern</b><p>We make ownership, decisions, risk, and adoption accountable.</p></li>
+        <li><span>03</span><b>Defend</b><p>We reduce exposure while increasing responsible defensive capacity.</p></li>
+        <li><span>04</span><b>Prove</b><p>We establish evidence of integrity, control effectiveness, and readiness.</p></li>
+        <li><span>05</span><b>Learn</b><p>We sustain every pillar through durable human capability.</p></li>
+      </ol>
+      <p class="framework-note reveal">Methods may be informed by recognized guidance including the NIST AI Risk Management Framework, NIST Cybersecurity Framework, and OWASP AI and agentic-security guidance. Framework alignment is scoped to each engagement and is not represented as certification or automatic compliance.</p>
+    </section>
+
     <!-- THESIS / WHY -->
-    <section class="section thesis" id="why" hidden>
+    <section class="section thesis" id="about">
       <div class="thesis-copy reveal">
-        <p class="kicker">§ Thesis</p>
-        <h2>Rare people who speak <span class="ital">both languages.</span></h2>
-        <p class="lede">Most firms hand you an AI team or a security team. The dangerous problems live
-          in between — and they need people fluent in both. That's the only place we work.</p>
+        <p class="kicker">§ About</p>
+        <h2>Executive judgment meets <span class="ital">practical delivery.</span></h2>
+        <p class="lede">Next Puzzle is a trusted AI and cyber resilience partner. We connect board and C-suite priorities to the architecture, safeguards, evidence, and workforce capability required for responsible production use.</p>
         <dl class="tenets">
-          <div><dt>Practitioners, not slideware.</dt><dd>Everything we recommend, we've shipped or broken ourselves.</dd></div>
-          <div><dt>Offense informs defense.</dt><dd>We build controls the way an attacker would test them.</dd></div>
-          <div><dt>Signal over ceremony.</dt><dd>Findings ranked by exploitability and impact — no 200-page PDFs.</dd></div>
+          <div><dt>Secure AI transformation.</dt><dd>Strategy, architecture, data, identity, governance, resilience, and readiness are one connected operating problem.</dd></div>
+          <div><dt>Defined agent authority.</dt><dd>Access, tools, actions, approvals, monitoring, rollback, and accountability are designed explicitly.</dd></div>
+          <div><dt>Integrity and proof.</dt><dd>Recommendations communicate evidence, assumptions, limitations, and residual risk without unsupported guarantees.</dd></div>
         </dl>
+        <a class="text-link" href="responsible-consulting.html">Read our Responsible Consulting Charter →</a>
       </div>
     </section>
 
@@ -234,8 +304,7 @@
         <h2>Let's find your <span class="ital">next piece.</span></h2>
         <p class="lede">We're a small, hands-on team, and every note reaches us directly — nothing
           disappears into a queue. Tell us a little about what you're building or defending, and we'll
-          write back within a couple of days with a thought or two and, if it feels like a fit, a time
-          to talk.</p>
+          get back to you as soon as possible.</p>
 
         <form class="inquiry" id="inquiry" method="post" action="contact.php" novalidate>
           <div class="field-row">
@@ -248,14 +317,47 @@
               <input id="f-org" name="org" type="text" required maxlength="120" autocomplete="organization" />
             </div>
           </div>
-          <div class="field">
-            <label for="f-email">E-mail <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-email" name="email" type="email" required maxlength="150" autocomplete="email" />
+          <div class="field-row">
+            <div class="field">
+              <label for="f-role">Role <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-role" name="role" type="text" required maxlength="120" autocomplete="organization-title" />
+            </div>
+            <div class="field">
+              <label for="f-email">Work e-mail <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-email" name="email" type="email" required maxlength="150" autocomplete="email" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-context">Organization size or industry <span class="optional">Optional</span></label>
+              <input id="f-context" name="context" type="text" maxlength="160" />
+            </div>
+            <div class="field">
+              <label for="f-need">Primary need <span class="req" aria-hidden="true">*</span></label>
+              <select id="f-need" name="need" required>
+                <option value="">Select one</option><option>Build secure AI capability</option><option>Govern AI adoption</option><option>Defend AI systems</option><option>Prove AI integrity and readiness</option><option>Educate leaders or teams</option><option>Responsible disclosure</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-stage">AI adoption stage <span class="req" aria-hidden="true">*</span></label>
+              <select id="f-stage" name="stage" required>
+                <option value="">Select one</option><option>Exploring</option><option>Experimenting</option><option>Piloting</option><option>In production</option><option>Scaling</option><option>Not sure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-engagement">Preferred engagement <span class="req" aria-hidden="true">*</span></label>
+              <select id="f-engagement" name="engagement" required>
+                <option value="">Select one</option><option>Executive advisory</option><option>Assessment</option><option>Workshop</option><option>Training</option><option>Technical review</option><option>Speaking</option><option>Other</option>
+              </select>
+            </div>
           </div>
           <div class="field">
-            <label for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
+            <label for="f-message">Brief description of the challenge <span class="req" aria-hidden="true">*</span></label>
             <textarea id="f-message" name="message" required rows="5" maxlength="4000"></textarea>
           </div>
+          <label class="consent" for="f-consent"><input id="f-consent" name="consent" type="checkbox" value="yes" required /><span>I consent to Next Puzzle using this information to respond to my inquiry. See the <a href="privacy.html">privacy notice</a>.</span></label>
           <div class="hp" aria-hidden="true">
             <label>Leave this field empty
               <input type="text" name="website" tabindex="-1" autocomplete="off" />
@@ -271,20 +373,29 @@
   </main>
 
   <footer class="footer">
-    <div class="footer-top">
-      <svg class="brand-glyph" viewBox="0 0 34 21" aria-hidden="true">
-        <rect x="0.75" y="0.75" width="32.5" height="19.5" rx="0.75" />
-        <path class="fib-spiral" d="M1 20A20 20 0 0 0 21 0A12 12 0 0 1 33 12A8 8 0 0 1 25 20A5 5 0 0 1 20 15A3 3 0 0 1 23 12" />
-      </svg>
-      <span class="footer-name">Next Puzzle</span>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-top">
+          <img class="brand-logo" src="assets/next-puzzle-logo.jpeg" alt="" width="40" height="40" />
+          <span class="footer-name">Next Puzzle</span>
+        </div>
+        <p class="footer-tag">Build, govern, defend, and prove trusted AI.</p>
+      </div>
+      <nav class="footer-links" aria-label="Services"><b>Services</b><a href="#serviceExplorer">Build</a><a href="#serviceExplorer">Govern</a><a href="#serviceExplorer">Defend</a><a href="#serviceExplorer">Prove</a><a href="#serviceExplorer">Learn</a></nav>
+      <nav class="footer-links" aria-label="Explore"><b>Explore</b><a href="#frameworks">Frameworks</a><a href="#featured">Solutions</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <nav class="footer-links" aria-label="Policies"><b>Trust</b><a href="responsible-consulting.html">Responsible Consulting</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a></nav>
     </div>
-    <p class="footer-tag">Advisory at the intersection of AI &amp; cybersecurity.</p>
     <div class="footer-meta">
       <a href="#contact">Contact&nbsp;→</a>
       <span>© <span id="year">2026</span> NEXT PUZZLE — ALL RIGHTS RESERVED</span>
     </div>
   </footer>
 
-  <script src="script.js?v=20260902-04"></script>
+  <aside class="cookie-banner" id="cookieBanner" aria-labelledby="cookieTitle" hidden>
+    <div><b id="cookieTitle">Cookies &amp; analytics</b><p>We use optional analytics cookies to improve this website. No advertising trackers. <a href="privacy.html#analytics">Learn more</a>.</p></div>
+    <div class="cookie-actions"><button type="button" class="cookie-decline" id="cookieDecline">Decline</button><button type="button" class="cookie-accept" id="cookieAccept">Accept analytics</button></div>
+  </aside>
+
+  <script src="script.js?v=20260907-06"></script>
 </body>
 </html>

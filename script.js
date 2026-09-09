@@ -7,6 +7,40 @@
   var themeToggle = document.getElementById('themeToggle');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ambient jigsaw field — small pieces with independent, randomized drift */
+  var puzzleField = document.getElementById('puzzleField');
+  if (puzzleField) {
+    var pieceCount = window.innerWidth < 560 ? 22 : (window.innerWidth < 960 ? 36 : 58);
+    var piecePath = 'M2 2H36C34 16 42 25 52 25S70 16 68 2H98V36C84 34 75 42 75 52S84 70 98 68V98H64C66 84 58 75 48 75S30 84 32 98H2V64C16 66 25 58 25 48S16 30 2 32Z';
+    for (var pieceIndex = 0; pieceIndex < pieceCount; pieceIndex++) {
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      var size = 12 + Math.random() * 20;
+      var left = Math.random() * 100;
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('class', 'float-piece');
+      svg.style.width = size.toFixed(1) + 'px';
+      svg.style.height = size.toFixed(1) + 'px';
+      svg.style.left = 'calc(' + left.toFixed(2) + '% - ' + (size / 2).toFixed(1) + 'px)';
+      svg.style.top = (Math.random() * 100).toFixed(2) + '%';
+      svg.style.setProperty('--piece-opacity', (.028 + Math.random() * .06).toFixed(3));
+      path.setAttribute('d', piecePath);
+      svg.appendChild(path);
+      puzzleField.appendChild(svg);
+      var startRotation = Math.random() * 360;
+      if (!reduce && svg.animate) {
+        svg.animate([
+          { transform: 'translate3d(0,0,0) rotate(' + startRotation.toFixed(1) + 'deg)' },
+          { transform: 'translate3d(' + (-120 + Math.random() * 240).toFixed(1) + 'px,' + (-100 + Math.random() * 200).toFixed(1) + 'px,0) rotate(' + (startRotation + 22 + Math.random() * 70).toFixed(1) + 'deg)' },
+          { transform: 'translate3d(' + (-150 + Math.random() * 300).toFixed(1) + 'px,' + (-130 + Math.random() * 260).toFixed(1) + 'px,0) rotate(' + (startRotation - 24 + Math.random() * 52).toFixed(1) + 'deg)' },
+          { transform: 'translate3d(' + (-110 + Math.random() * 220).toFixed(1) + 'px,' + (-90 + Math.random() * 180).toFixed(1) + 'px,0) rotate(' + (startRotation + 10 + Math.random() * 48).toFixed(1) + 'deg)' }
+        ], { duration: 32000 + Math.random() * 42000, delay: -Math.random() * 50000, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out' });
+      } else {
+        svg.style.transform = 'rotate(' + startRotation.toFixed(1) + 'deg)';
+      }
+    }
+  }
+
   /* theme switch — system preference by default, remembered after manual choice */
   function reflectTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -16,7 +50,7 @@
     themeToggle.setAttribute('aria-label', label);
     themeToggle.setAttribute('title', label);
     var themeColor = document.querySelector('meta[name="theme-color"]');
-    if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#122c1f' : '#f7eff6');
+    if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#122c1f' : '#edf6ff');
   }
 
   if (themeToggle) {
@@ -50,7 +84,7 @@
   }
 
   function addPieceIcon(svg, faceIndex, col, row) {
-    var iconForFace = ['education', 'system', 'threat', 'research', 'agent', 'system'];
+    var iconForFace = ['system', 'education', 'threat', 'research', 'agent', 'system'];
     var drawings = {
       education: [
         ['M14 28c14-5 25-1 36 7v39c-11-8-22-10-36-5z M86 28c-14-5-25-1-36 7v39c11-8 22-10 36-5z', ''],
@@ -123,7 +157,7 @@
   }
 
   function drawServiceIcon(index, delay) {
-    var faces = ['.cube-front', '.cube-left', '.cube-top', '.cube-back'];
+    var faces = ['.cube-front', '.cube-left', '.cube-top', '.cube-back', '.cube-right'];
     if (iconDrawTimer) clearTimeout(iconDrawTimer);
     document.querySelectorAll('.piece-icon path').forEach(function (path) {
       path.getAnimations().forEach(function (animation) { animation.cancel(); });
@@ -203,6 +237,11 @@
         if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); selectService(current - 1, true); }
         if (e.key === 'Home') { e.preventDefault(); selectService(0, true); }
         if (e.key === 'End') { e.preventDefault(); selectService(serviceDots.length - 1, true); }
+      });
+    });
+    document.querySelectorAll('[data-select-service]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        selectService(Number(link.getAttribute('data-select-service')), false);
       });
     });
     serviceCube.addEventListener('click', function () {
@@ -330,6 +369,47 @@
   }
 
   /* footer year */
+  var cookieBanner = document.getElementById('cookieBanner');
+  var cookieAccept = document.getElementById('cookieAccept');
+  var cookieDecline = document.getElementById('cookieDecline');
+
+  function analyticsCookie(name) {
+    var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+
+  function recordPageview(visitorId) {
+    if (!visitorId || location.protocol !== 'https:') return;
+    var referrer = '';
+    try { referrer = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+    fetch('analytics.php', {
+      method: 'POST', credentials: 'same-origin', keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ event: 'pageview', visitor: visitorId, path: location.pathname, referrer: referrer, width: window.innerWidth, language: navigator.language || '' })
+    }).catch(function () {});
+  }
+
+  var analyticsConsent = analyticsCookie('np_analytics_consent');
+  var analyticsVisitor = analyticsCookie('np_analytics');
+  if (analyticsConsent === 'accepted' && analyticsVisitor) recordPageview(analyticsVisitor);
+  else if (cookieBanner && !analyticsConsent && localStorage.getItem('np_analytics_declined') !== 'yes') {
+    if (navigator.globalPrivacyControl || navigator.doNotTrack === '1') localStorage.setItem('np_analytics_declined', 'yes');
+    else cookieBanner.hidden = false;
+  }
+  if (cookieAccept) cookieAccept.addEventListener('click', function () {
+    var visitorId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+    var cookieBase = '; path=/; max-age=15552000; SameSite=Lax; Secure';
+    document.cookie = 'np_analytics_consent=accepted' + cookieBase;
+    document.cookie = 'np_analytics=' + encodeURIComponent(visitorId) + cookieBase;
+    try { localStorage.removeItem('np_analytics_declined'); } catch (e) {}
+    cookieBanner.hidden = true;
+    recordPageview(visitorId);
+  });
+  if (cookieDecline) cookieDecline.addEventListener('click', function () {
+    try { localStorage.setItem('np_analytics_declined', 'yes'); } catch (e) {}
+    cookieBanner.hidden = true;
+  });
+
   var yr = document.getElementById('year');
   if (yr) yr.textContent = new Date().getFullYear();
 
@@ -341,12 +421,14 @@
 
     function clearErrors() {
       form.querySelectorAll('.field.error').forEach(function (f) { f.classList.remove('error'); });
+      form.querySelectorAll('.consent.error').forEach(function (f) { f.classList.remove('error'); });
       statusEl.className = 'form-status';
       statusEl.textContent = '';
     }
     function markError(name) {
       var el = form.querySelector('[name="' + name + '"]');
       if (el && el.closest('.field')) el.closest('.field').classList.add('error');
+      if (el && el.closest('.consent')) el.closest('.consent').classList.add('error');
     }
 
     form.addEventListener('submit', function (e) {
@@ -354,11 +436,11 @@
       clearErrors();
 
       if (!form.checkValidity()) {
-        form.querySelectorAll('input, textarea').forEach(function (el) {
+        form.querySelectorAll('input, textarea, select').forEach(function (el) {
           if (el.name !== 'website' && !el.checkValidity()) markError(el.name);
         });
         statusEl.classList.add('err');
-        statusEl.textContent = 'Please add your name, company, a valid e-mail, and a message.';
+        statusEl.textContent = 'Please complete the required fields and confirm the privacy notice.';
         return;
       }
 

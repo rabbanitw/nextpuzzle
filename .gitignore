@@ -4,6 +4,8 @@ gitkey.txt
 *.pub
 contact.php
 .DS_Store
+issue_screenshots/
+website_editing/
 
 # local deploy helper (contains server coordinates)
 deploy.sh
