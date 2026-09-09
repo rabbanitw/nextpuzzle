@@ -54,7 +54,7 @@
   }
 
   if (themeToggle) {
-    reflectTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+    reflectTheme(document.documentElement.getAttribute('data-theme') || 'light');
     themeToggle.addEventListener('click', function () {
       var current = document.documentElement.getAttribute('data-theme');
       var next = current === 'dark' ? 'light' : 'dark';

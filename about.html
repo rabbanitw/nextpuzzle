@@ -9,8 +9,9 @@
   <meta name="color-scheme" content="dark light" />
   <script>
     (function () {
-      var saved = localStorage.getItem('np-theme');
-      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var saved = null;
+      try { saved = localStorage.getItem('next-puzzle-theme'); } catch (e) {}
+      var theme = saved || 'light';
       document.documentElement.setAttribute('data-theme', theme);
     }());
   </script>
@@ -60,6 +61,6 @@
   </main>
 
   <footer class="footer"><div class="footer-grid"><div class="footer-brand"><div class="footer-top"><img class="brand-logo" src="assets/next-puzzle-logo.jpeg" alt="" width="40" height="40" /><span class="footer-name">Next Puzzle</span></div><p class="footer-tag">Build, govern, defend, and prove trusted AI.</p></div><nav class="footer-links" aria-label="Services"><b>Services</b><a href="index.html#serviceExplorer">Build</a><a href="index.html#serviceExplorer">Govern</a><a href="index.html#serviceExplorer">Defend</a><a href="index.html#serviceExplorer">Prove</a><a href="index.html#serviceExplorer">Learn</a></nav><nav class="footer-links" aria-label="Explore"><b>Explore</b><a href="index.html#frameworks">Frameworks</a><a href="index.html#featured">Solutions</a><a href="about.html">About Us</a><a href="index.html#contact">Contact</a></nav><nav class="footer-links" aria-label="Policies"><b>Trust</b><a href="responsible-consulting.html">Responsible Consulting</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a></nav></div><div class="footer-meta"><a href="index.html#contact">Contact&nbsp;→</a><span>© <span id="year">2026</span> NEXT PUZZLE — ALL RIGHTS RESERVED</span></div></footer>
-  <script src="script.js?v=20260907-06"></script>
+  <script src="script.js?v=20260908-01"></script>
 </body>
 </html>
